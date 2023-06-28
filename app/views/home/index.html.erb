@@ -1,0 +1,9 @@
+<div class="d-flex justify-content-center align-items-center" style="height: 100vh;">
+  <div class="square-container">
+    <% @actions.each do |action| %>
+      <div class="btn-group-vertical mb-2">
+        <button class="btn btn-primary square-button btn-block btn-lg"><%= action %></button>
+      </div>
+    <% end %>
+  </div>
+</div>

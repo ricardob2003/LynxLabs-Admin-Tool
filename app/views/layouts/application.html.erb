@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Lynx Labs Admin Log</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+    <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
+    <%= javascript_importmap_tags %>
+  </head>
+  <body>
+    <header>
+      <div class="logo-container">
+        <%= image_tag("LynxLogo.png", width: "300px", height: "auto") %>
+      </div>
+    </header>
+    <div class = "content">
+      <%= yield %>
+    </div>
+    <footer>
+      <p>
+        <a href = "https://lynx-labs.com"> &copy; LynxLabs SA </a>
+      </p>
+    </body>
+  </html>
