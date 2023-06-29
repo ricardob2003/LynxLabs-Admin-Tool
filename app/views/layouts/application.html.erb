@@ -9,17 +9,10 @@
     <%= javascript_importmap_tags %>
   </head>
   <body>
-    <header>
-      <div class="logo-container">
-        <%= image_tag("LynxLogo.png", width: "300px", height: "auto") %>
-      </div>
-    </header>
+    <%= render "layouts/header"%>
     <div class = "content">
       <%= yield %>
     </div>
-    <footer>
-      <p>
-        <a href = "https://lynx-labs.com"> &copy; LynxLabs SA </a>
-      </p>
-    </body>
-  </html>
+    <%= render "layouts/footer"%>
+  </body>
+</html>

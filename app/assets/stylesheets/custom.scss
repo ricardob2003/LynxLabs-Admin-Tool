@@ -47,7 +47,7 @@ a {
 }
 
 a:hover {
-  text-decoration: underline;
+  text-decoration: none;
 }
 
 // Header and Nav
@@ -592,6 +592,7 @@ section.errors {
     position: absolute;
     top: 0;
     right: 0;
+
   }
 
 }
