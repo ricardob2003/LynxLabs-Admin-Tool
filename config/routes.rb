@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :addresses
   # Route for the home page
   root to: "home#index"
 

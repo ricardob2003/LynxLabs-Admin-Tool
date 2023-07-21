@@ -1,0 +1,32 @@
+<%= form_for @proyecto, url: proyectos_path do |f| %>
+  <!-- Non-editable fields -->
+  <%= render "shared/errors", object: @proyecto %>
+  <div class="field">
+    <%= f.label :name, "Nombre del Proyecto" %><br>
+    <%= f.text_field :name, value: @proyecto.name, readonly: !@proyecto.new_record? %>
+  </div>
+  <div class="field">
+    <%= f.label :cliente %><br>
+    <%= f.text_field :cliente, value: @proyecto.cliente, readonly: !@proyecto.new_record? %>
+  </div>
+  <div class="field">
+    <%= f.label :start_date, "Fecha de Asignación" %><br>
+    <%= f.date_field :start_date, value: @proyecto.start_date, readonly: !@proyecto.new_record? %>
+  </div>
+  <!-- Editable fields -->
+  <div class="field">
+    <%= f.label :end_date, "Fecha de Finalización" %><br>
+    <%= f.date_field :end_date %>
+  </div>
+  <div class="field">
+    <%= f.label :status %><br>
+    <%= f.select :status, options_for_select([['Asignado', 'Asignado'], ['Development', 'Development'], ['Production', 'Production'], ['Entregado', 'Entregado']]) %>
+  </div>
+  <div class="field">
+    <%= f.label :bitacora_del_proyecto %><br>
+    <%= f.text_area :bitacora_del_proyecto, rows: 4 %>
+  </div>
+  <div class="actions" style="margin-bottom: 10px;">
+    <%= f.submit @proyecto.new_record? ? 'Crear Proyecto' : 'Actualizar Proyecto' %>
+  </div>
+<% end %>

@@ -73,3 +73,6 @@ group :test do
   gem "selenium-webdriver"
   gem "webdrivers"
 end
+
+#Gem that provides access to lists of states in a country and cities within a state.
+gem "city-state"

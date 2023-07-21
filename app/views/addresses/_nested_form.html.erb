@@ -1,0 +1,27 @@
+<% debugger %>
+<% if f.object.errors.any? %>
+  <div style="color: red">
+    <h2><%= pluralize(f.object.errors.count, "error") %> no permitio que esta direccion se guardara. </h2>
+    <ul>
+      <% f.object.errors.each do |error| %>
+        <li><%= error.full_message %></li>
+      <% end %>
+    </ul>
+  </div>
+<% end %>
+<div class="form-row">
+  <%= f.label :country, style: "display: block" %>
+  <%= f.select :country, f.object.countries.invert, { prompt: "Seleccione Pais de Residencia" }, {} %>
+</div>
+<div class="form-row">
+  <%= f.label :state, style: "display: block" %>
+  <%= f.select :state, f.object.states.invert, { prompt: "Seleccione Estado de Residencia" }, {} %>
+</div>
+<div class="form-row">
+  <%= f.label :city, style: "display: block" %>
+  <%= f.select :city, f.object.cities.reverse, { prompt: "Seleccione Ciudad de Residencia" }, {} %>
+</div>
+<div class="form-row">
+  <%= f.label :address_line_1, style: "display: block" %>
+  <%= f.text_field :address_line_1 %>
+</div>

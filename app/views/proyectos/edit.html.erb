@@ -1,18 +1,2 @@
-<h1>Editando Proyecto: <%= @proyecto.name %></h1>
-<%= form_with(model: @proyecto) do |f| %>
-  <div class="field">
-    <%= f.label :status %>
-    <%= f.select :status, options_for_select([['Asignado', 'Asignado'], ['Development', 'Development'], ['Production', 'Production'], ['Entregado', 'Entregado']], @proyecto.status) %>
-  </div>
-  <div class="field">
-    <%= f.label :end_date %>
-    <%= f.date_field :end_date %>
-  </div>
-  <div class="field">
-    <%= f.label :bitacora_del_proyecto %>
-    <%= f.text_area :bitacora_del_proyecto, rows: 4 %>
-  </div>
-  <div class="actions">
-    <%= f.submit "Guardar cambios" %>
-  </div>
-<% end %>
+<h1>Editando Proyecto: <%= @proyectos.name %></h1>
+<%= render "form", empleado: @proyectos %>

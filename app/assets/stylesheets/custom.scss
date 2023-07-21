@@ -1,5 +1,4 @@
 // Colors
-
 $black: #0c0c0c;
 $off-white: #ededed;
 $dark-gray: #666;
@@ -13,7 +12,6 @@ $light-yellow: #ffc;
 $red: #dc3545;
 
 // Custom Variables
-
 $secondary-text-color: $medium-gray;
 $accent-color: $orange;
 $secondary-link-color: $white;
@@ -53,7 +51,6 @@ a:hover {
 }
 
 // Header and Nav
-
 header {
   background-color: $primary;
   padding: 0.5rem;
@@ -128,163 +125,13 @@ header {
     }
   }
 }
+//Header Logo
+.logo-container {
+  margin-right: 1rem;
+    order: -1; // Move the logo container to the beginning
 
-// Movies Index Page
-
-section.movie {
-  @extend .row;
-  margin-bottom: 1.5rem;
-  padding-bottom: 1em;
-  border-bottom: 1px dotted $border-color;
-
-  &:nth-last-child(1) {
-    border-bottom: none;
-  }
-
-  .image {
-    @extend .col-md-3, .text-center;
-    img {
-      width: 100px;
-      box-shadow: $box-shadow;
-    }
-  }
-
-  .summary {
-    @extend .col-md-9, .text-start;
-  }
-
-  h2 {
-    font-size: 1.5rem;
-    margin-bottom: 0.25rem;
-  }
-
-  h3 {
-    font-size: 1.1rem;
-    color: $secondary-text-color;
-    font-weight: 400;
-  }
-
-  p {
-    margin-top: 1.1rem;
-  }
-
-  span.stars {
-    float: right;
-    margin-top: -3.75rem;
-  }
 }
 
-
-// Users Index Page
-
-ul.users {
-  font-size: 1.25em;
-  list-style: none;
-  padding: 0;
-
-  li {
-    margin: 1em 0;
-  }
-}
-
-// User Show Page
-
-section.user {
-  h2 {
-    font-size: 1.35rem;
-    color: $secondary-text-color;
-  }
-
-  h3 {
-    margin-top: 3rem;
-    font-size: 1.5rem;
-    margin-bottom: 2rem;
-  }
-
-  .actions {
-    margin-top: 1rem;
-
-    .button {
-      @extend .btn, .btn-sm;
-
-      &.edit {
-        @extend .btn-outline-secondary;
-      }
-
-      &.delete {
-        @extend .btn-danger;
-      }
-    }
-  }
-
-  .review {
-    @extend .row;
-    margin: 1rem 0;
-    border-radius: 0.3rem;
-    border: 1px solid $border-color;
-    padding: 1rem;
-
-    .details {
-      @extend .col-md-12, .text-start;
-
-      .title {
-        font-size: 1.15rem;
-        font-weight: 600;
-      }
-
-      .star-rating {
-        margin-bottom: 0.3rem;
-      }
-      .date {
-        font-size: 1rem;
-        font-weight: 400;
-        color: $secondary-text-color;
-      }
-
-      p {
-        margin-top: 1rem;
-      }
-    }
-  }
-
-  .favorite-movies {
-    display: flex;
-    flex-wrap: wrap;
-    margin-top: -1rem;
-
-    img {
-      margin: 1rem;
-      width: 150px;
-      box-shadow: $box-shadow;
-    }
-  }
-}
-
-// Reviews Index Page
-
-ul.reviews {
-  font-size: 1.25em;
-  list-style: none;
-  padding: 0;
-
-  li {
-    margin: 1em 0 2.5rem 0;
-
-    span {
-      &.date {
-        font-size: 0.8em;
-        font-weight: 400;
-        margin-left: 0.3rem;
-        color: $secondary-text-color;
-      }
-    }
-
-    .button {
-      @extend .btn, .btn-sm, .btn-outline-danger;
-      margin-left: 0.5rem;
-    }
-  }
-}
 
 // Footer
 body {
@@ -309,30 +156,6 @@ footer a {
   color: $secondary-link-color;
 }
 
-// Admin Section
-
-section.admin {
-  text-align: center;
-  margin: 3rem 0;
-  padding-top: 2rem;
-  border-top: 1px dashed $border-color;
-
-  &.no-rule {
-    border-top: none;
-    padding-top: 0;
-  }
-
-  a.button, button {
-    @extend .btn, .btn-secondary;
-    letter-spacing: 1px;
-    text-transform: uppercase;
-  }
-}
-
-section.movie + section.admin {
-  border-top: none;
-  padding-top: 0;
-}
 
 // Aside
 
@@ -360,6 +183,20 @@ aside {
 
 form.button_to {
   display: inline;
+}
+
+.form-row {
+  margin-bottom: 20px;
+  margin-left: 20px !important;
+}
+
+.radio-options {
+  display: flex;
+}
+
+.radio-input {
+  margin-right: 20px !important;
+  margin-left: 20px !important;
 }
 
 form:not([class="button_to"]) {
@@ -480,13 +317,69 @@ section.errors {
     font-weight: 600;
   }
 }
+//Square Button Class
+.square-button {
+  position: absolute;
+  right: 1rem;
+  bottom: 1rem;
+  padding: 0.5vh 1vh;
+  font-size: calc(0.8vh + 0.8vw);
+  color: white;
+  background-color: $purple;
+  border: none;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  transition-duration: 0.4s;
+  cursor: pointer;
 
-//Header Logo
-.logo-container {
-  margin-right: 1rem;
-    order: -1; // Move the logo container to the beginning
-
+  &:hover {
+    background-color: $purple;
+    color: $white;
+  }
 }
+//Proyectos Index Page Styling
+.page-container-proyectos {
+  display: grid;
+  grid-template-rows: auto 1fr;
+  height: calc(100vh - 100px);
+
+
+  #filter-form-proyectos {
+    z-index: 10; // Making sure the form stays above other elements
+    width: 100%; // Takes the full width of the form
+    margin-bottom: 50px; // Create Spacing between the filter form and the table
+
+    label {
+      display: block;
+      color: #000000;
+      font-weight: bold;
+      margin-bottom: 5px;
+    }
+
+    select {
+      width: 50%; // Takes the full width of the form
+      padding: 2px;
+      border: none;
+      background-color: #470247;
+      color: #ededed;
+      font-weight: bold;
+      -webkit-appearance: none; // Removing default select dropdown style for Chrome
+      -moz-appearance: none; // Removing default select dropdown style for Firefox
+      appearance: none; // Standard syntax
+    }
+  }
+
+  .table-container {
+    overflow-y: auto;
+    position: relative;
+
+    .projects-table {
+      width: 100%;
+    }
+  }
+}
+
 //Show Page for Proyectos
 section.proyecto-details {
   background-color: #e6e6e6; // Update the background color
@@ -518,67 +411,33 @@ section.proyecto-details {
 }
 
 
-//Main Container holding both the filter form and the table
-.page-container {
-  display: grid;
-  grid-template-rows: auto 1fr;
-  height: calc(100vh - 100px);  // Adjust 100px to fit your actual header and footer heights
 
-  //Filter Form Styling Drop Down Menu Style for Proyectos Index page
-  #filter-form {
-    z-index: 10; // Making sure the form stays above other elements
-    width: 100%; // Takes the full width of the form
-    margin-bottom: 50px; // Create Spacing between the filter form and the table
+// Empleados Index Page
+.page-container-empleados {
+  padding: 20px;
+  height: calc(100vh - 100px); // Adjust 100px to fit your actual header and footer heights
+}
 
-    label {
-      display: block;
-      color: #000000;
-      font-weight: bold;
-      margin-bottom: 5px;
-    }
-
-    select {
-      width: 50%; // Takes the full width of the form
-      padding: 2px;
-      border: none;
-      background-color: #470247;
-      color: #ededed;
-      font-weight: bold;
-      -webkit-appearance: none; // Removing default select dropdown style for Chrome
-      -moz-appearance: none; // Removing default select dropdown style for Firefox
-      appearance: none; // Standard syntax
-    }
+#filter-form-empleados {
+  margin-bottom: 20px;
+  .form-control, .custom-select {
+    height: 36px;
   }
 
-  //Table Container Styling
-  .table-container {
-    overflow-y: auto;
-    position: relative;
+  .filter-button {
+    height: 36px;
+    color: white;
+    background-color: $purple;
 
-    //Table Styling for Proyectos Index Table
-    .projects-table {
-      width: 100%;
+
+    &:hover {
+      background-color: darken($purple, 20%);
+      color: $white;
     }
   }
 }
-//Square Button Class for Index Pages
-.square-button {
-  position: absolute;
-  right: 1rem;
-  bottom: 1rem;
-  padding: 0.5vh 1vh;
-  font-size: calc(0.8vh + 0.8vw);
-  color: white;
-  background-color: $purple;
-  border: none;
-  text-align: center;
-  text-decoration: none;
-  display: inline-block;
-  transition-duration: 0.4s;
-  cursor: pointer;
 
-  &:hover {
-    background-color: $purple;
-    color: $purple;
-  }
+.table-container {
+  margin-top: 20px;
+  overflow-y: auto;
 }

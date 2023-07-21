@@ -1,29 +1,27 @@
 class ProyectosController < ApplicationController
+  before_action :set_proyecto, only: [:show, :edit, :update, :destroy]
+
   def index
-    if params[:status].present?
-      @proyectos = Proyecto.where(status: params[:status])
-    else
-      @proyectos = Proyecto.all
-    end
+    @proyectos = Proyecto.filter_by_status(params[:status])
   end
 
   def show
-    @proyecto = Proyecto.find(params[:id])
   end
 
   def edit
     @proyecto = Proyecto.find(params[:id])
+    @non_editable_attributes = {
+      name: @proyecto.name,
+      cliente: @proyecto.cliente,
+      start_date: @proyecto.start_date,
+    }
   end
 
   def update
-    @proyecto = Proyecto.find(params[:id])
-    # Update only the specified attributes
     if @proyecto.update(proyecto_params_edit)
-      # Successfully updated, handle the response
-      redirect_to(proyectos_path, notice: "Proyecto was successfully updated.")
+      redirect_to(proyectos_path, notice: "Proyecto se creo exitosamente")
     else
-      # Failed to update, handle the error
-      render :edit
+      render :edit, status: :unprocessable_entity
     end
   end
 
@@ -33,17 +31,23 @@ class ProyectosController < ApplicationController
 
   def create
     @proyecto = Proyecto.new(proyecto_params_create)
-    @proyecto.save
-    redirect_to(proyectos_path, notice: "Proyecto was successfully updated.")
+    if @proyecto.save
+      redirect_to(proyectos_path, notice: "Proyecto se creo exitosamente")
+    else
+      render :new, status: :unprocessable_entity
+    end
   end
 
   def destroy
-    @proyecto = Proyecto.find(params[:id])
     @proyecto.destroy
-    redirect_to proyectos_url, status: :see_other
+    redirect_to proyectos_url, status: :unprocessable_entity, notice: "Proyecto #{Proyecto.name} se ha eliminado exitosamente"
   end
 
   private
+
+  def set_proyecto
+    @proyecto = Proyecto.find(params[:id])
+  end
 
   def proyecto_params_create
     params.require(:proyecto).permit(:name, :cliente, :start_date, :end_date, :status, :bitacora_del_proyecto)

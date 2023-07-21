@@ -1,0 +1,13 @@
+<% @empleados.each do |empleado| %>
+  <div class="empleado-perfil">
+    <h2>Nombre: <%= empleado.nombre %></h2>
+    <p>Apellido: <%= empleado.apellido %></p>
+    <p>Nacionalidad: <%= empleado.nacionalidad %></p>
+    <p>Estado Civil: <%= empleado.estado_civil %></p>
+    <p>Ubicación: <%= "#{empleado.city.name}, #{empleado.city.region.name}, #{empleado.city.region.country.name}" %></p>
+    <p>Tipo de Contrato: <%= empleado.contrato %></p>
+    <p>Developer: <%= empleado.developer %></p>
+    <p>DNI: <%= empleado.dni %></p>
+    <p>RTN: <%= empleado.rtn %></p>
+  </div>
+<% end %>

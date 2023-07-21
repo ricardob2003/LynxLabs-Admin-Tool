@@ -1,5 +1,5 @@
-<div class = "page-container">
-  <%= form_tag(proyectos_path, method: "get", id: "filter-form") do %>
+<div class = "page-container-proyectos">
+  <%= form_tag(proyectos_path, method: "get", id: "filter-form-proyectos") do %>
     <%= label_tag :status, "Proyectos:" %>
     <%= select_tag :status, options_for_select([['Asignado', 'Asignado'], ['Development', 'Development'], ['Production', 'Production'], ['Entregado', 'Entregado']], params[:status]), prompt: 'Todos los Proyectos', onchange: "this.form.submit();" %>
   <% end %>
