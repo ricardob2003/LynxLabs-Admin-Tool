@@ -1,5 +1,5 @@
-<%= form_with(model: empleado) do |f| %>
-  <%= render "shared/errors", object: empleado %>
+<%= form_with(model: empleado, format: :html) do |f| %>
+  <%= render "shared/errors", object: @empleado %>
   <div class="form-row">
     <div class="form-column">
       <%= f.label :nombre %>
