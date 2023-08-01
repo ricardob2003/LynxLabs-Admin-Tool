@@ -1,0 +1,45 @@
+<div>
+  <%= form_tag(inventories_path, method: "get", id: "filter-form-inventories") do %>
+    <%= label_tag :name, "Buscar Tipo de Inventario:" %>
+    <%= select_tag :name, options_for_select([['Mac-Mini', 'Mac-Mini'], ['Monitor', 'Monitor'], ['Mouse', 'Mouse'], ['Teclado', 'Teclado'], ['UPS', 'UPS']], params[:name]), prompt: 'Todos los Equipos', onchange: "this.form.submit();" %>
+  <% end %>
+  <div> <!-- Custom CSS styling class -->
+    <table class="table">
+      <thead>
+        <tr>
+          <th style="background-color: #470247; color: #ededed; font-weight: bold;">Equipo</th>
+          <th style="background-color: #470247; color: #ededed; font-weight: bold;">Modelo de Equipo</th>
+          <th style="background-color: #470247; color: #ededed; font-weight: bold;">Numero de Serie</th>
+          <th style="background-color: #470247; color: #ededed; font-weight: bold;">Estado del Equipo</th>
+          <th style="background-color: #470247; color: #ededed; font-weight: bold;">Fecha de Compra</th>
+          <th style="background-color: #470247; color: #ededed; font-weight: bold;">ID de Lynx</th>
+          <th style="background-color: #470247; color: #ededed; font-weight: bold;">Precio de Compra</th>
+          <th style="background-color: #470247; color: #ededed; font-weight: bold;">Precio Pro-Rateado</th>
+          <th style="background-color: #470247; color: #ededed; font-weight: bold;">Vencimiento de la Garantía</th>
+          <th colspan="2" style="background-color: #470247; color: #ededed; font-weight: bold;">Acciones</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @inventories.each do |inventory| %>
+          <tr>
+            <td style="color: #000000;">
+              <%= link_to inventory.name, inventory_path(inventory), style: "color: #000000; text-decoration: none; font-weight: bold;" %>
+            </td>
+            <td style="color: #000000;"><%= inventory.model %></td>
+            <td style="color: #000000;"><%= inventory.serial_number %></td>
+            <td style="color: #000000;"><%= inventory.status %></td>
+            <td style="color: #000000;"><%= inventory.entry_date ? inventory.entry_date.strftime("%d %b %Y") : 'N/A' %></td>
+            <td style="color: #000000;"><%= inventory.lynx_id_number %></td>
+            <td style="color: #000000;"><%= number_to_currency(inventory.purchase_price) %></td>
+            <td style="color: #000000;"><%= number_to_currency(inventory.current_cost) %></td>
+            <td style="color: #000000;"><%= inventory.warranty_expiration ? inventory.warranty_expiration.strftime("%d %b %Y") : 'N/A' %></td>
+            <td>
+              <%= link_to "Eliminar Equipo", inventory_path(inventory), data: { turbo_method: :delete, turbo_confirm: "¿Estás seguro de que quieres eliminar este equipo? Esta acción no se puede deshacer." }, class: "btn btn-danger" %>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+  <%= link_to "Agregar Nuevo Equipo", new_inventory_path, class: "btn btn-primary square-button btn-block btn-lg", "data-bs-toggle": "button", role: "button" %>
+</div>

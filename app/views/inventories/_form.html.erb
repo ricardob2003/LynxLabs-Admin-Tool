@@ -1,0 +1,51 @@
+<%= form_with(model: inventory) do |f| %>
+  <% if inventory.errors.any? %>
+    <div style="color: red">
+      <h2>  <%= display_inventory_errors(@inventory) %> </h2>
+      <ul>
+        <% inventory.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+  <div>
+    <%= f.label :name, "Equipo", style: "display: block" %>
+    <%= f.select :name, ['Mac Mini', 'Monitor', 'Teclado', 'Mouse', 'UPS'], prompt: 'Selecciona el tipo de equipo:' %>
+  </div>
+  <div>
+    <%= f.label :model, "Modelo de Equipo", style: "display: block" %>
+    <%= f.text_field :model %>
+  </div>
+  <div>
+    <%= f.label :serial_number, "Numero de Serie", style: "display: block" %>
+    <%= f.text_field :serial_number %>
+  </div>
+  <div>
+    <%= f.label :status, "Estado del Equipo",  style: "display: block" %>
+    <%= f.text_field :status %>
+  </div>
+  <div>
+    <%= f.label :entry_date, "Fecha de Compra", style: "display: block" %>
+    <%= f.date_field :entry_date %>
+  </div>
+  <div>
+    <%= f.label :lynx_id_number, "ID de Lynx", style: "display: block" %>
+    <%= f.text_field :lynx_id_number %>
+  </div>
+  <div>
+    <%= f.label :purchase_price, "Precio de Compra", style: "display: block" %>
+    <%= f.number_field :purchase_price %>
+  </div>
+  <div>
+    <%= f.label :current_cost, "Precio Pro-Rateado", style: "display: block" %>
+    <%= f.number_field :current_cost %>
+  </div>
+  <div>
+    <%= f.label :warranty_expiration, "Vencimiento de la Garantía", style: "display: block" %>
+    <%= f.date_field :warranty_expiration %>
+  </div>
+  <div>
+    <%= f.submit "Agregar al Inventario" %>
+  </div>
+<% end %>

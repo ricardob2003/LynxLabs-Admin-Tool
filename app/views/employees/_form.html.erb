@@ -1,0 +1,49 @@
+<%= form_with(model: employee, format: :html) do |f| %>
+  <%= render "shared/errors", object: @employee %>
+  <div class="form-row">
+    <div class="form-column">
+      <%= f.label :nombre %>
+      <%= f.text_field :nombre, autofocus: true %>
+    </div>
+    <div class="form-column">
+      <%= f.label :apellido %>
+      <%= f.text_field :apellido %>
+    </div>
+  </div>
+  <div class="form-row">
+    <%= f.label :nacionalidad %>
+    <%= f.text_field :nacionalidad %>
+  </div>
+  <div class="form-row">
+    <%= f.label :estado_civil %>
+    <%= f.select :estado_civil, ['Soltero', 'Casado', 'Union Libre', 'Divorciado', 'Viudo'], prompt: 'Seleccione Estado Civil' %>
+  </div>
+  <%= f.fields_for :address do |address_fields| %>
+    <%= render "addresses/nested_form", f: address_fields %>
+  <% end %>
+  <div class="form-row">
+    <div class="form-row">
+      <%= f.label :contrato %>
+      <div class="radio-options">
+        <%= f.collection_radio_buttons :contrato, [['Full-Time', 'full-time'], ['Part-Time', 'part-time'], ['Contratista', 'contratista'], ['Empleado No Activo', 'no-activo']], :second, :first, item_wrapper_class: 'radio-inline', class: 'radio-input' %>
+      </div>
+    </div>
+    <div class="form-row">
+      <%= f.label :developer, "Tipo de Developer"  %>
+      <%= f.text_field :developer %>
+    </div>
+    <div class="form-row">
+      <div class="form-column">
+        <%= f.label :dni, "Documento de Identidad"  %>
+        <%= f.text_field :dni %>
+      </div>
+      <div class="form-column">
+        <%= f.label :rtn, "RTN" %>
+        <%= f.text_field :rtn %>
+      </div>
+    </div>
+  </div>
+  <div class="form-row">
+    <%= f.submit %>
+  </div>
+<% end %>

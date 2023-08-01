@@ -1,5 +1,5 @@
 class Address < ApplicationRecord
-  belongs_to :empleado, foreign_key: :empleado_id
+  belongs_to :employee
   validates :country, inclusion: { in: ->(record) { record.states.keys }, allow_blank: true, message: "no es un pais valido" }
   validates :state, presence: { if: ->(record) { record.states.present? }, message: "no puede estar en blanco cuando el país tiene estados válidos" }
   validates :city, inclusion: { in: ->(record) { record.cities }, allow_blank: true, message: "no es un estado/ciudad válido" }

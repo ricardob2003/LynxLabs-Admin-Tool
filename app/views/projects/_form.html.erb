@@ -1,0 +1,45 @@
+<%= form_for @project, url: @project.new_record? ? projects_path : project_path(@project.id) do |f| %>
+  <% if @project.errors.any? %>
+    <div style="color: red">
+      <h2>
+        <%= display_project_errors(@project) %>
+      </h2>
+      <ul>
+        <% @project.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+  <!-- Non-editable fields -->
+  <div>
+    <%= f.label :name, "Nombre del Proyecto" %><br>
+    <%= f.text_field :name, readonly: !@project.new_record? %>
+  </div>
+  <div>
+    <%= f.label :cliente %><br>
+    <%= f.text_field :cliente, readonly: !@project.new_record? %>
+  </div>
+  <div>
+    <%= f.label :start_date, "Fecha de Asignación" %><br>
+    <%= f.date_field :start_date, readonly: !@project.new_record? %>
+  </div>
+  <!-- Editable fields -->
+  <% if @project.new_record? %>
+    <div>
+      <%= f.label :end_date, "Fecha de Finalización" %><br>
+      <%= f.date_field :end_date %>
+    </div>
+    <div>
+      <%= f.label :status %><br>
+      <%= f.select :status, options_for_select([['Asignado', 'Asignado'], ['Development', 'Development'], ['Production', 'Production'], ['Entregado', 'Entregado']]) %>
+    </div>
+    <div>
+      <%= f.label :bitacora_del_proyecto %><br>
+      <%= f.text_area :bitacora_del_proyecto, rows: 4 %>
+    </div>
+  <% end %>
+  <div style="margin-bottom: 10px;">
+    <%= f.submit @project.new_record? ? 'Crear proyecto' : 'Actualizar proyecto' %>
+  </div>
+<% end %>

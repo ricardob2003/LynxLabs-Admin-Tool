@@ -1,0 +1,58 @@
+<div>
+  <%= form_tag(employees_path, method: "get", id: "filter-form-employees", remote: true, class: "d-flex justify-content-center align-items-center") do %>
+    <%= select_tag "filter", options_for_select(['Seleccione Filtro', 'Tipo de Contrato', 'Developer', 'Ciudad']), class: 'custom-select mr-2', style: 'flex:1' %>
+  <% end %>
+  <div>
+    <table class="table">
+      <thead>
+        <tr>
+          <th style="background-color: #470247; color: #ededed; font-weight: bold;">Nombre</th>
+          <th style="background-color: #470247; color: #ededed; font-weight: bold;">Apellido</th>
+          <th style="background-color: #470247; color: #ededed; font-weight: bold;">Nacionalidad</th>
+          <th style="background-color: #470247; color: #ededed; font-weight: bold;">Estado Civil</th>
+          <th style="background-color: #470247; color: #ededed; font-weight: bold;">Ubicación </th>
+          <th style="background-color: #470247; color: #ededed; font-weight: bold;">Tipo de Contrato</th>
+          <th style="background-color: #470247; color: #ededed; font-weight: bold;">Developer</th>
+          <th style="background-color: #470247; color: #ededed; font-weight: bold;">DNI</th>
+          <th style="background-color: #470247; color: #ededed; font-weight: bold;">RTN</th>
+          <th colspan="2" style="background-color: #470247; color: #ededed; font-weight: bold;">Acciones de Empleado</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @employees.each do |employee| %>
+          <tr>
+            <td style="color: #000000;">
+              <%= employee.nombre %>
+            </td>
+            <td style="color: #000000;"><%= employee.apellido %></td>
+            <td style="color: #000000;"><%= employee.nacionalidad %></td>
+            <td style="color: #000000;"><%= employee.estado_civil %></td>
+            <td style="color: #000000;">
+              <%= "#{employee.city.name}, #{employee.city.region.name}, #{employee.city.region.country.name}" %>
+            </td>
+            <td style="color: #000000;"><%= employee.contrato %></td>
+            <td style = "color:#00000;"> <%= employee.developer%>
+              <td style="color: #000000;"><%= employee.dni %></td>
+              <td style="color: #000000;"><%= employee.rtn %></td>
+              <td>
+                <%= link_to "Editar", edit_employee_path(employee), class: "btn btn-primary" %>
+              </td>
+              <td>
+                <%= link_to "Eliminar", employee_path(employee), method: :delete, data: { confirm: 'Estás seguro de que quieres eliminar este empleado? Esta acción no se puede deshacer.' }, class: "btn btn-danger" %>
+              </td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+    <%= link_to "Crear Nuevo Empleado", new_employee_path(@empleados), class: "btn btn-primary square-button btn-block btn-lg", "data-bs-toggle": "button", role: "button" %>
+  </div>
+  <div id = "employee-info-container">
+    <%= render 'employees/profile' %>
+  </div>
+  <%# Define Script function %>
+  <script>
+    function clickSubmit() {
+      $("#search_submit").trigger("click");
+    }
+  </script>

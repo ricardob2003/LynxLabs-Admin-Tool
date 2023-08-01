@@ -1,0 +1,41 @@
+<div>
+  <%= form_tag(projects_path, method: "get", id: "filter-form-inventories") do %>
+    <%= label_tag :status, "Proyecto:" %>
+    <%= select_tag :status, options_for_select([['Asignado', 'Asignado'], ['Development', 'Development'], ['Production', 'Production'], ['Entregado', 'Entregado']], params[:status]), prompt: 'Todos los Proyectos', onchange: "this.form.submit();" %>
+  <% end %>
+</div>
+<div> <!-- Custom CSS styling class -->
+  <table class="table">
+    <thead>
+      <tr>
+        <th style="background-color: #470247; color: #ededed; font-weight: bold;">Nombre</th>
+        <th style="background-color: #470247; color: #ededed; font-weight: bold;">Cliente</th>
+        <th style="background-color: #470247; color: #ededed; font-weight: bold;">Fecha de Inicio</th>
+        <th style="background-color: #470247; color: #ededed; font-weight: bold;">Fecha de Entrega Estimada</th>
+        <th style="background-color: #470247; color: #ededed; font-weight: bold;">Status</th>
+        <th style="background-color: #470247; color: #ededed; font-weight: bold;">Bitacora del Proyecto</th>
+        <th colspan="2" style="background-color: #470247; color: #ededed; font-weight: bold;">Acciones del Proyecto</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @projects.each do |project| %>
+        <tr>
+          <td style="color: #000000;">
+            <%= link_to project.name, project_path(project), style: "color: #000000; text-decoration: none; font-weight: bold;" %>
+          </td>
+          <td style="color: #000000;"><%= project.cliente %></td>
+          <td style="color: #000000;"><%= project.start_date ? project.start_date.strftime("%d %b %Y") : 'N/A' %></td>
+          <td style="color: #000000;"><%= project.end_date.strftime("%d %b %Y") %></td>
+          <td style="color: #000000;"><%= project.status %></td>
+          <td style="color: #000000;">
+            <%= truncate(project.bitacora_del_proyecto, length: 75) %>
+          </td>
+          <td>
+            <%= link_to "Eliminar proyecto", project_path(project),data: { turbo_method: :delete, turbo_confirm: "Estás seguro de que quieres eliminar este project? Esta acción no se puede deshacer." }, class: "btn btn-danger" %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+  <%= link_to "Crear Nuevo Proyecto", new_project_path(@projects), class: "btn btn-primary square-button btn-block btn-lg", "data-bs-toggle": "button", role: "button" %>
+</div>
