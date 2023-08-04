@@ -22,15 +22,15 @@
     <%= f.text_field :serial_number %>
   </div>
   <div>
-    <%= f.label :status, "Estado del Equipo",  style: "display: block" %>
-    <%= f.text_field :status %>
+    <%= f.label :status, "Estado del Equipo", style: "display: block" %>
+    <%= f.select :status, ['Disponible', 'Asignado', 'Fuera de Rotación', 'En Reparación', 'Vendido'], prompt: 'Selecciona el estado del equipo:' %>
   </div>
   <div>
     <%= f.label :entry_date, "Fecha de Compra", style: "display: block" %>
     <%= f.date_field :entry_date %>
   </div>
   <div>
-    <%= f.label :lynx_id_number, "ID de Lynx", style: "display: block" %>
+    <%= f.label :lynx_id_number, "Equipment ID de Lynx", style: "display: block" %>
     <%= f.text_field :lynx_id_number %>
   </div>
   <div>

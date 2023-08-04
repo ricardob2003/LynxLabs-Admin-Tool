@@ -8,5 +8,5 @@ class Employee < ApplicationRecord
   validates :nombre, :apellido, :nacionalidad, :developer, presence: { message: "no puede estar en blanco" }
   validates :estado_civil, inclusion: { in: ["Soltero", "Casado", "Union Libre", "Divorciado", "Viudo"], message: "debe ser una opción válida" }
   validates :dni, :rtn, presence: true, uniqueness: true
-  validates :contrato, inclusion: { in: ["Full-Time", "Part-Time", "Contratista", "Empleado No Activo"], message: "debe ser una opción válida" }
+  validates :contrato, inclusion: { in: ["Activo", "No Activo"], message: "debe ser una opción válida" }
 end

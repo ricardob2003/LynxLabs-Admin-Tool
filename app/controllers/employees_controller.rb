@@ -46,6 +46,14 @@ class EmployeesController < ApplicationController
     redirect_to employees_url, notice: "El Perfil del Empleado se ha eliminado exitosamente"
   end
 
+  def states
+    @target = params[:target]
+    @states = CS.get(params[:country]).invert
+    respond_to do |format|
+      format.turbo_stream
+    end
+  end
+
   private
 
   # Use callbacks to share common setup or constraints between actions.

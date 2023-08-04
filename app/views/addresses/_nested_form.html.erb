@@ -8,19 +8,21 @@
     </ul>
   </div>
 <% end %>
-<div class="form-row">
-  <%= f.label :country, style: "display: block" %>
-  <%= f.select :country, f.object.countries.invert, { prompt: "Seleccione Pais de Residencia" }, {} %>
+<div data-controller ="address">
+  <div class="form-row">
+    <%= f.label :country , "Pais", style: "display: block" %>
+    <%= f.select :country, f.object.countries.invert, { prompt: "Seleccione Pais de Residencia" }, { class: 'form-select', data: { action: "change->address#change" } } %>
+  </div>
+  <div class="form-row">
+    <%= f.label :state , "Departamento", style: "display: block"  %>
+    <%= f.select :state, f.object.states.invert, { prompt: "Seleccione Estado de Residencia" }, { class: 'form-select', data: { address_target: "stateSelect" } } %>
+  </div>
+  <div class="form-row">
+    <%= f.label :city, "Ciudad" , style: "display: block" %>
+    <%= f.select :city, f.object.cities.reverse, { prompt: "Seleccione Ciudad de Residencia" }, {} %>
+  </div>
 </div>
 <div class="form-row">
-  <%= f.label :state, style: "display: block" %>
-  <%= f.select :state, f.object.states.invert, { prompt: "Seleccione Estado de Residencia" }, {} %>
-</div>
-<div class="form-row">
-  <%= f.label :city, style: "display: block" %>
-  <%= f.select :city, f.object.cities.reverse, { prompt: "Seleccione Ciudad de Residencia" }, {} %>
-</div>
-<div class="form-row">
-  <%= f.label :address_line_1, style: "display: block" %>
+  <%= f.label :address_line_1, "Colonia", style: "display: block" %>
   <%= f.text_field :address_line_1 %>
 </div>
