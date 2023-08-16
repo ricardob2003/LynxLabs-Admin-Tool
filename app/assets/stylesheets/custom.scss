@@ -54,8 +54,8 @@ a:hover {
 header {
   background-color: $primary;
   padding: 0.5rem;
-  margin-bottom: 3rem;
-  height: 10vh;
+  margin-bottom: 2rem;
+  height: 12vh;
 
   nav {
     @extend .navbar, .navbar-expand-md;
@@ -88,7 +88,7 @@ header {
 
       li {
         @extend .nav-item;
-        font-size: 1.1rem;
+        font-size: 1.5rem;
         margin-right: 5px;
 
         a {
@@ -146,7 +146,7 @@ footer {
   margin-top: auto;
   padding-top: 2rem;
   padding-bottom: 2rem;
-  height: 10vh;
+  height: 12vh;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -321,7 +321,7 @@ section.errors {
   position: absolute;
   right: 1rem;
   bottom: 1rem;
-  padding: 0.5vh 1vh;
+  padding: 1vh 2vh;
   font-size: calc(0.8vh + 0.8vw);
   color: white;
   background-color: $purple;
@@ -336,4 +336,24 @@ section.errors {
     background-color: $purple;
     color: $white;
   }
+}
+
+//User Action Button Class
+.user-button {
+  display: inline-block;
+  margin: 0 5px;
+  max-width: 200px; /* Adjusted max-width for a smaller button */
+  background-color: rgba(255, 255, 255, 0.144); /* Almost clear background */
+  color: rgb(5, 5, 5);
+  text-align: center;
+  padding: 4px 6px; /* Adjusted padding for a smaller button */
+  text-decoration: none;
+  border: 2px solid #BF5700; /* Border color */
+  border-radius: 6px; /* Slightly rounded corners */
+  transition: background-color 0.3s, border-color 0.3s;
+}
+
+.user-button:hover {
+  background-color: #BF5700; /* Border color on hover */
+  border-color: #BF5700; /* Border color on hover */
 }

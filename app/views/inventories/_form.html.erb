@@ -1,14 +1,5 @@
 <%= form_with(model: inventory) do |f| %>
-  <% if inventory.errors.any? %>
-    <div style="color: red">
-      <h2>  <%= display_inventory_errors(@inventory) %> </h2>
-      <ul>
-        <% inventory.errors.each do |error| %>
-          <li><%= error.full_message %></li>
-        <% end %>
-      </ul>
-    </div>
-  <% end %>
+  <%= render "shared/errors", object: @inventory %>
   <div>
     <%= f.label :name, "Equipo", style: "display: block" %>
     <%= f.select :name, ['Mac Mini', 'Monitor', 'Teclado', 'Mouse', 'UPS'], prompt: 'Selecciona el tipo de equipo:' %>
@@ -30,7 +21,7 @@
     <%= f.date_field :entry_date %>
   </div>
   <div>
-    <%= f.label :lynx_id_number, "Equipment ID de Lynx", style: "display: block" %>
+    <%= f.label :lynx_id_number, "ID del Equipo de Lynx", style: "display: block" %>
     <%= f.text_field :lynx_id_number %>
   </div>
   <div>

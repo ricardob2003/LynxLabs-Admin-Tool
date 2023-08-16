@@ -1,6 +1,0 @@
-{
-  "dependencies": {
-    "@rails/request.js": "^0.0.8",
-    "jquery": "^3.7.0"
-  }
-}

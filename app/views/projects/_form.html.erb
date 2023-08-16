@@ -1,16 +1,5 @@
 <%= form_for @project, url: @project.new_record? ? projects_path : project_path(@project.id) do |f| %>
-  <% if @project.errors.any? %>
-    <div style="color: red">
-      <h2>
-        <%= display_project_errors(@project) %>
-      </h2>
-      <ul>
-        <% @project.errors.each do |error| %>
-          <li><%= error.full_message %></li>
-        <% end %>
-      </ul>
-    </div>
-  <% end %>
+  <%= render "shared/errors", object: @project %>
   <!-- Non-editable fields -->
   <div>
     <%= f.label :name, "Nombre del Proyecto" %><br>

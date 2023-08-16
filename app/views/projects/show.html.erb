@@ -7,6 +7,7 @@
       <p><strong>Fecha de finalización:</strong> <%= @project.end_date.strftime("%d %b %Y") %></p>
       <p><strong>Estado:</strong> <%= @project.status %></p>
       <p><strong>Bitácora del project:</strong> <%= @project.bitacora_del_proyecto %></p>
+      <%= link_to "Asignar Empleado",  class: "button" %>
     </div>
     <div class="col-md-4">
       <%= link_to "Editar", edit_project_path(@project), class: "button btn btn-outline-secondary" %>

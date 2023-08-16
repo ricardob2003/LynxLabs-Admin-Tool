@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :admins
 
   # Route for the home page
   root to: "home#index"
@@ -10,11 +11,12 @@ Rails.application.routes.draw do
   #This section of the routes file defines routes for the "tasks" resource, allowing for the dynamic creation of new "assign" and "extract" actions for individual tasks. These actions will be handled by the corresponding "new_assign" and "new_extract" methods in the TasksController. The "member" block specifies that these routes will be nested under the "tasks" resource and will operate on individual task instances.
   resources :tasks do
     member do
-      get "extract", to: "tasks#new_extract"
+      get "assign_equipment"
+      post "assign_equipment"
+      get "extract_equipment"
+      post "extract_equipment"
     end
   end
-
-  get "assign_task", to: "tasks#new", as: :assign_task
 
   #Employee Route Logic for Implementing Dynamic Fields in the Nested Address Form
   resources :employees do

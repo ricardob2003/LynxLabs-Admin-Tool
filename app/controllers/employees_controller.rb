@@ -12,7 +12,7 @@ class EmployeesController < ApplicationController
 
   # GET /employees/new
   def new
-    @employee = Employee.new
+    @employee = Employee.new employee_params
     @employee.build_address
   end
 
@@ -44,14 +44,6 @@ class EmployeesController < ApplicationController
   def destroy
     @employee.destroy
     redirect_to employees_url, notice: "El Perfil del Empleado se ha eliminado exitosamente"
-  end
-
-  def states
-    @target = params[:target]
-    @states = CS.get(params[:country]).invert
-    respond_to do |format|
-      format.turbo_stream
-    end
   end
 
   private

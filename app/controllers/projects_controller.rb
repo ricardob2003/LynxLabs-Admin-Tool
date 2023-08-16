@@ -1,5 +1,5 @@
 class ProjectsController < ApplicationController
-  before_action :set_proyecto, only: [:show, :edit, :update, :destroy]
+  before_action :set_project, only: [:show, :edit, :update, :destroy]
 
   def index
     @projects = Project.filter_by_status(params[:status])
@@ -18,8 +18,8 @@ class ProjectsController < ApplicationController
   end
 
   def update
-    if @project.update(proyecto_params_edit)
-      redirect_to(proyectos_path, notice: "Proyecto se actualizo exitosamente")
+    if @project.update(project_params_edit)
+      redirect_to(projects_path, notice: "Proyecto se actualizo exitosamente")
     else
       render :edit, status: :unprocessable_entity
     end
@@ -30,9 +30,9 @@ class ProjectsController < ApplicationController
   end
 
   def create
-    @project = Project.new(proyecto_params_create)
+    @project = Project.new(project_params_create)
     if @project.save
-      redirect_to(proyectos_path, notice: "Proyecto se creo exitosamente")
+      redirect_to(projects_path, notice: "Proyecto se creo exitosamente")
     else
       render :new, status: :unprocessable_entity
     end
@@ -40,20 +40,20 @@ class ProjectsController < ApplicationController
 
   def destroy
     @project.destroy
-    redirect_to proyectos_url, status: :unprocessable_entity, notice: "Proyecto #{project.name} se ha eliminado exitosamente"
+    redirect_to projects_url, status: :unprocessable_entity, notice: "Proyecto #{project.name} se ha eliminado exitosamente"
   end
 
   private
 
-  def set_proyecto
+  def set_project
     @project = Project.find(params[:id])
   end
 
-  def proyecto_params_create
+  def project_params_create
     params.require(:project).permit(:name, :cliente, :start_date, :end_date, :status, :bitacora_del_proyecto)
   end
 
-  def proyecto_params_edit
+  def project_params_edit
     params.require(:project).permit(:status, :end_date, :bitacora_del_proyecto)
   end
 end

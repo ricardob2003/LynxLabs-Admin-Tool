@@ -30,4 +30,23 @@
 # available at https://guides.rubyonrails.org/i18n.html.
 
 en:
-  hello: "Hello world"
+  activerecord:
+    attributes:
+      project:
+        name: "Nombre del proyecto"
+        start_date: "Fecha de Asignación"
+        end_date: "Fecha de Finalización"
+      address:
+        country: "País"
+        state: "Región"
+        address_line_1: "Colonia"
+      inventory:
+        name: "Tipo de Equipo"
+        model: "Modelo de Equipo"
+        entry_date: "Fecha de Compra"
+        warranty_expiration: "Fecha de Vencimiento de Garantía"
+        serial_number: "Número de Serie"
+        lynx_id_number: "ID del Equipo de Lynx"
+        purchase_price: "Precio de Compra"
+        current_cost: "Precio Pro-Rateado"
+        status: "Estado del Equipo"

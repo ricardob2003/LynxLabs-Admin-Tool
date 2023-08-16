@@ -3,9 +3,11 @@
     <h2>
       Oops! La Información no se pudo guardar.
     </h2>
+    <p>
+      Se presentaron <%= pluralize(object.errors.count, "errore") %> que impidieron que el perfil del objeto se creara exitosamente.
+    </p>
     <h3>
-      Porfavor corriga los siguientes errores:
-      <%= pluralize(object.errors.size, "error") %>:
+      Por favor corrija los siguientes <%= pluralize(object.errors.size, "errore") %>:
     </h3>
     <ul>
       <% object.errors.full_messages.each do |message| %>

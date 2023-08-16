@@ -1,4 +1,4 @@
 class ProjectAssignment < ApplicationRecord
-  belongs_to :empleado
-  belongs_to :proyecto
+  belongs_to :employee
+  belongs_to :project
 end

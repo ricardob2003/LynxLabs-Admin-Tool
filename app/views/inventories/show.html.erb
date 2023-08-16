@@ -1,2 +1,6 @@
 <p style="color: green"><%= notice %></p>
 <%= render @inventory %>
+<div style="text-align: center; margin-top: 80px;">
+  <%= link_to "Asignar Equipo", assign_equipment_task_path(@task), class: "user-button" %>
+  <%= link_to "Extraer Equipo", extract_equipment_task_path(@task), class: "user-button" %>
+</div>

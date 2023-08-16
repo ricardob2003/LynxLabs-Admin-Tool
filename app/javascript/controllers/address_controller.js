@@ -4,10 +4,12 @@ import { get } from "@rails/request.js"
 export default class extends Controller {
   static targets = ["stateSelect"]
   change(event) {
-    let country = console.log(event.target.selectedOptions[0].value)
-    let target = this.stateSelectTarget.id
-    get('/employees/states?target=${target}country=${country}', {
-      responseKind: "turbo-stream"
-    })
+    event.target.closest("form").submit()
+
+    // let country = event.target.selectedOptions[0].value
+    // let target = this.stateSelectTarget.id
+    // get(`/employees/states?target=${target}&country=${country}`, {
+    //   responseKind: "turbo-stream"
+    // })
   }
 }
