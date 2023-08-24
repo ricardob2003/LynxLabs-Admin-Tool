@@ -8,6 +8,8 @@ class InventoriesController < ApplicationController
 
   # GET /inventories/1 or /inventories/1.json
   def show
+    @inventory = Inventory.find(params[:id])
+    @task = Task.new
   end
 
   # GET /inventories/new

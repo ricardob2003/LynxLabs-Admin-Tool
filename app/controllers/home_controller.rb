@@ -4,7 +4,7 @@ class HomeController < ApplicationController
       "Agregar Proyecto" => new_project_path,
       "Crear Perfil de Empleado" => new_employee_path,
       "Agregar al Inventario" => new_inventory_path,
-      "Asignar Admin" => root_path,
+      "Asignar Admin" => sign_up_path,
 
     }
   end

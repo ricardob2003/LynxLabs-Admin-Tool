@@ -1,0 +1,11 @@
+<p>Hola,</p>
+
+<p>Esto es para confirmar que <%= @user.email %> es el correo electrónico que deseas usar en tu cuenta. Si alguna vez pierdes tu contraseña, te enviaremos un enlace de restablecimiento a este correo electrónico.</p>
+
+<p><strong>Debes hacer clic en el enlace de abajo para confirmar que recibiste este correo electrónico.</strong></p>
+
+<p><%= link_to "Sí, usar este correo para mi cuenta", identity_email_verification_url(sid: @signed_id) %></p>
+
+<hr>
+
+<p>¿Tienes preguntas o necesitas ayuda? Solo responde a este correo electrónico y nuestro equipo de soporte te ayudará a resolverlo.</p>

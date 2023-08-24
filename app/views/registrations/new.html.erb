@@ -1,0 +1,24 @@
+<h1>Agregar Administrador </h1>
+<%= form_with(url: sign_up_path) do |form| %>
+  <%= render "shared/errors", object: @user %>
+  <div>
+    <%= form.label :username, style: "display: block" %>
+    <%= form.text_field :username, value: @user.username, required: true, autofocus: true, autocomplete: "username" %>
+  </div>
+  <div>
+    <%= form.label :email, style: "display: block" %>
+    <%= form.email_field :email, value: @user.email, required: true, autofocus: true, autocomplete: "email" %>
+  </div>
+  <div>
+    <%= form.label :password, style: "display: block" %>
+    <div>Mínimo 12 caracteres</div>
+    <%= form.password_field :password, required: true, autocomplete: "new-password" %>
+  </div>
+  <div>
+    <%= form.label :password_confirmation, style: "display: block" %>
+    <%= form.password_field :password_confirmation, required: true, autocomplete: "new-password" %>
+  </div>
+  <div>
+    <%= form.submit "Asignar Administrador" %>
+  </div>
+<% end %>

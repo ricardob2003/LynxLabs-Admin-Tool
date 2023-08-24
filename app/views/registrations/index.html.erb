@@ -1,0 +1,32 @@
+<div> <!-- Custom CSS styling class -->
+  <table class="table">
+    <thead>
+      <tr>
+        <th style="background-color: #470247; color: #ededed; font-weight: bold;">Usario</th>
+        <th style="background-color: #470247; color: #ededed; font-weight: bold;">Correo Electronico</th>
+        <th style="background-color: #470247; color: #ededed; font-weight: bold;">Cuenta Verificada</th>
+        <th style="background-color: #470247; color: #ededed; font-weight: bold;">Sesiones y Dispositivos</th>
+        <th style="background-color: #470247; color: #ededed; font-weight: bold;">Administrar Perfil</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @users.each do |user| %>
+        <tr>
+          <td style="color: #000000;">
+            <%= link_to user.username, registration_path(user), style: "color: #000000; text-decoration: none; font-weight: bold;" %>
+          </td>
+          <td style="color: #000000;"><%= user.email %></td>
+          <td style="color: #000000;"><%= display_verification_status(user.verified) %></td>
+          <td style="color: #000000;">
+            <%= link_to "Sesiones y Dispositivos", session_path(user), style: "color: black; text-decoration: none;" %>
+          </td>
+          <td>
+            <%= link_to "Eliminar Administrador", registration_path(user), data: { turbo_method: :delete, turbo_confirm: "¿Estás seguro de que quieres eliminar este equipo? Esta acción no se puede deshacer." }, class: "btn btn-danger" %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>
+<%= link_to "Agregar Nuevo Administrador",  sign_up_path , class: "btn btn-primary square-button btn-block btn-lg", "data-bs-toggle": "button", role: "button" %>
+</div>

@@ -1,11 +1,11 @@
 <div data-controller ="address">
   <div class="form-row">
     <%= f.label :country , "Pais", style: "display: block" %>
-    <%= f.select :country, f.object.countries.invert, { prompt: "Seleccione Pais de Residencia" }, { class: 'form-select', data: { action: "change->address#change" } } %>
+    <%= f.select :country, f.object.countries.invert, { prompt: "Seleccione Pais de Residencia" }, { class: 'form-select'} %>
   </div>
   <div class="form-row">
     <%= f.label :state , "Departamento", style: "display: block"  %>
-    <%= f.select :state, f.object.states.invert, { prompt: "Seleccione Estado de Residencia" }, { class: 'form-select', data: { address_target: "stateSelect" } } %>
+    <%= f.select :state, f.object.states.invert, { prompt: "Seleccione Estado de Residencia" }, { class: 'form-select' } %>
   </div>
   <div class="form-row">
     <%= f.label :city, "Ciudad" , style: "display: block" %>

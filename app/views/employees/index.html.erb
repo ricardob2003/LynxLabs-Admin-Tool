@@ -1,6 +1,6 @@
 <div>
   <%= form_tag(employees_path, method: "get", id: "filter-form-employees", remote: true, class: "d-flex justify-content-center align-items-center") do %>
-    <%= select_tag "filter", options_for_select(['Seleccione Filtro', 'Tipo de Contrato', 'Developer', 'Ciudad']), class: 'custom-select mr-2', style: 'flex:1' %>
+    <%= select_tag "filter", options_for_select(['Todos los Empleados', 'Tipo de Contrato', 'Developer', 'Ciudad']), class: 'custom-select mr-2', style: 'flex:1' %>
   <% end %>
   <div>
     <table class="table">

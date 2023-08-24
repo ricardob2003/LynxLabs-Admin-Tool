@@ -1,0 +1,20 @@
+<div style="display: flex; flex-direction: column; justify-content: center; align-items: center; height: 100vh;">
+  <%= image_tag("LynxLabsLogoDark.png", class: "login-logo") %>
+  <h1 style="margin-bottom: 10px;">Iniciar Sesión</h1>
+  <%= form_with(url: sign_in_path) do |form| %>
+    <div>
+      <%= form.label :email, "Correo Electrónico", style: "display: block" %>
+      <%= form.email_field :email, value: params[:email_hint], required: true, autofocus: true, autocomplete: "email", style: "width: 400px;" %>
+    </div>
+    <div>
+      <%= form.label :password, "Contraseña", style: "display: block" %>
+      <%= form.password_field :password, required: true, autocomplete: "current-password", style: "width: 400px;" %>
+    </div>
+    <div style="margin-top: 20px;">
+      <%= form.submit "Iniciar Sesión", class: "btn btn-primary" %>
+    </div>
+  <% end %>
+  <div style="padding-top: 20px;">
+    <%= link_to "Olvido su contraseña?", new_identity_password_reset_path, style: "color: black;" %>
+  </div>
+</div>

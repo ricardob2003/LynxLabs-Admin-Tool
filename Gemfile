@@ -78,3 +78,9 @@ end
 gem "city-state"
 
 gem "requestjs-rails", "~> 0.0.10"
+
+gem "authentication-zero", "~> 2.16"
+# Use Active Model has_secure_password [https://guides.rubyonrails.org/active_model_basics.html#securepassword]
+gem "bcrypt", "~> 3.1.7"
+
+gem "rack-cors"

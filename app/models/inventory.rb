@@ -1,6 +1,6 @@
 class Inventory < ApplicationRecord
-  has_many :tasks
-  has_many :employees, through: :tasks
+  has_one :task
+  has_one :employee, through: :task
   validates :name, :model, :entry_date, :warranty_expiration, presence: { message: "no puede estar en blanco" }
   validates :serial_number, presence: { message: "no puede estar en blanco" }, uniqueness: { message: "debe ser único" }
   validates :lynx_id_number, presence: { message: "no puede estar en blanco" }, uniqueness: { message: "debe ser único" }

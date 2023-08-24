@@ -1,14 +1,11 @@
 <header>
   <nav>
     <div class="logo-container">
-      <%= link_to(root_path) do %>
+      <%= link_to(home_page_path) do %>
         <%= image_tag("LynxLogo.png", width: "200px", height: "400px") %>
       <% end %>
     </div>
-    <ul class = "left">
-      <li>
-        <%= link_to("Home", root_path) %>
-      </li>
+    <ul class="left">
       <li>
         <%= link_to("Empleados", employees_path) %>
       </li>
@@ -17,6 +14,14 @@
       </li>
       <li>
         <%= link_to("Inventario", inventories_path) %>
+      </li>
+      <li>
+        <%= link_to("Administradores", administradores_path) %>
+      </li>
+    </ul>
+    <ul class="right">
+      <li>
+        <%= button_to("Cerrar Sesión", Current.session, method: :delete, class: "button") %>
       </li>
     </ul>
   </nav>

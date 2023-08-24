@@ -1,0 +1,31 @@
+<p style="color: green"><%= notice %></p>
+<h1>Sesiones y Dispositivos</h1>
+<div id="sessions">
+  <% @sessions.each do |session| %>
+    <div id="<%= dom_id session %>">
+      <p>
+        <strong>User Agent:</strong>
+        <%= session.user_agent %>
+      </p>
+      <p>
+        <strong>Ip Address:</strong>
+        <%= session.ip_address %>
+      </p>
+      <p>
+        <strong>Registrada el:</strong>
+        <%= formatted_datetime(session.created_at) %>
+      </p>
+    </div>
+    <p>
+      <%= button_to "Cerrar Sesión", session, method: :delete %>
+    </p>
+  <% end %>
+</div>
+<br>
+<p style="color: green;"><%= notice %></p>
+<h5><%= "Administrar Credenciales" %></h5>
+<div class="user-buttons-container">
+  <%= button_to("Cambiar Contraseña", edit_password_path, method: :get, class: "user-button") %>
+  <%= button_to("Cambiar Correo Electronico", edit_identity_email_path, method: :get, class: "user-button") %>
+</div>
+<div style="margin-bottom: 20px;"></div>

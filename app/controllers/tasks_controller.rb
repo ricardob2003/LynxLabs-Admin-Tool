@@ -66,6 +66,9 @@ class TasksController < ApplicationController
 
     respond_to do |format|
       if @task.save
+        # Update the status of the related inventory to "Asignado"
+        @equipment.inventory.update(status: "Asignado")
+
         format.html { redirect_to @employee, notice: "El equipo fue asignado al empleado." }
         format.json { render :show, status: :created, location: @employee }
       else
@@ -79,11 +82,17 @@ class TasksController < ApplicationController
     @task = Task.find(params[:id])
 
     respond_to do |format|
-      if @task.update(extraction_params)
-        format.html { redirect_to @task, notice: "Equipment extracted." }
+      if @task.extract_equipment
+        @task.inventory.update(status: "Disponible")
+          flash[:notice] = "Equipment extracted successfully."
+          redirect_to inventory_path(@task.inventory)
+        end
         format.json { render :show, status: :ok, location: @task }
       else
-        format.html { render :edit, status: :unprocessable_entity }
+        format.html do
+          flash.now[:alert] = "Failed to extract equipment."
+          render :show, status: :unprocessable_entity
+        end
         format.json { render json: @task.errors, status: :unprocessable_entity }
       end
     end

@@ -1,6 +1,32 @@
 <p style="color: green"><%= notice %></p>
 <%= render @inventory %>
-<div style="text-align: center; margin-top: 80px;">
-  <%= link_to "Asignar Equipo", assign_equipment_task_path(@task), class: "user-button" %>
-  <%= link_to "Extraer Equipo", extract_equipment_task_path(@task), class: "user-button" %>
+<div class="col-md-4">
+  <%= link_to "Editar", edit_inventory_path(@inventory), class: "button btn btn-outline-secondary" %>
 </div>
+<div style="text-align: center; margin-top: 80px;">
+  <% if @inventory.status == "Disponible" %>
+    <%= link_to "Asignar Equipo", "#", id: "assign-equipment-link", class: "user-button" %>
+  <% elsif @inventory.status == "Asignado" %>
+    <%= link_to "Extraer Equipo", extract_equipment_task_path(@task), class: "user-button" %>
+  <% end %>
+</div>
+<div id="assign-equipment-form" style="display: none;">
+  <%= render 'tasks/assign_equipment_form', task: @task %>
+</div>
+<script>
+  document.addEventListener("DOMContentLoaded", function() {
+    const assignEquipmentLink = document.getElementById("assign-equipment-link");
+    const assignEquipmentForm = document.getElementById("assign-equipment-form");
+
+    assignEquipmentLink.addEventListener("click", function(event) {
+      event.preventDefault();
+      assignEquipmentForm.style.display = "block";
+    });
+
+    const assignEquipmentFormSubmit = assignEquipmentForm.querySelector("form");
+
+    assignEquipmentFormSubmit.addEventListener("submit", function(event) {
+      assignEquipmentForm.style.display = "none";
+    });
+  });
+</script>

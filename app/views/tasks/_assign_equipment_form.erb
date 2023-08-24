@@ -1,0 +1,18 @@
+<%= form_with(model: task) do |form| %>
+  <%= render "shared/errors", object: task %>
+  <div style="margin-bottom: 20px;"> <!-- Add margin-bottom -->
+    <%= form.label :date_of_assignment, style: "display: block" %>
+    <%= form.date_field :date_of_assignment %>
+  </div>
+  <div style="margin-bottom: 20px;"> <!-- Add margin-bottom -->
+    <%= form.label :equipment_log, "Bitácora del Equipo", style: "display: block" %>
+    <%= form.text_area :equipment_log %>
+  </div>
+  <div style="margin-bottom: 20px;"> <!-- Add margin-bottom -->
+    <%= form.label :assigned_by, style: "display: block" %>
+    <%= form.text_field :assigned_by %>
+  </div>
+  <div>
+    <%= form.submit "Asignar Equipo" %>
+  </div>
+<% end %>

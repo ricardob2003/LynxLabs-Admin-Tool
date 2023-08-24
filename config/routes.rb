@@ -1,28 +1,43 @@
 Rails.application.routes.draw do
-  resources :admins
+  # Root path
+  root to: "sessions#new"
 
-  # Route for the home page
-  root to: "home#index"
-
-  # Routes for the different actions
-  resources :addresses
-  resources :inventories
-
-  #This section of the routes file defines routes for the "tasks" resource, allowing for the dynamic creation of new "assign" and "extract" actions for individual tasks. These actions will be handled by the corresponding "new_assign" and "new_extract" methods in the TasksController. The "member" block specifies that these routes will be nested under the "tasks" resource and will operate on individual task instances.
-  resources :tasks do
-    member do
-      get "assign_equipment"
-      post "assign_equipment"
-      get "extract_equipment"
-      post "extract_equipment"
-    end
-  end
-
-  #Employee Route Logic for Implementing Dynamic Fields in the Nested Address Form
+  # Routes for projects, inventory and employees
+  resources :projects
   resources :employees do
     collection do
       get :states
     end
   end
-  resources :projects
+  resources :inventories
+
+  # Registrations Routes
+  resources :registrations, path: "registrations", only: [:show, :destroy]
+  get "administradores", to: "registrations#index"
+  get "sign_up", to: "registrations#new"
+  post "sign_up", to: "registrations#create"
+
+  # Sessions routes
+  get "sign_in", to: "sessions#new", as: :sign_in
+  post "sign_in", to: "sessions#create"
+
+  resources :sessions, only: [:index, :show, :destroy]
+  resource :password, only: [:edit, :update]
+
+  namespace :identity do
+    resource :email, only: [:edit, :update]
+    resource :email_verification, only: [:show, :create]
+    resource :password_reset, only: [:new, :edit, :create, :update]
+  end
+
+  # Route for the home page
+  get "home_page", to: "home#index"
+
+  # Routes for the "tasks" resource
+  resources :tasks do
+    member do
+      post "assign_equipment"
+      post "extract_equipment"
+    end
+  end
 end
