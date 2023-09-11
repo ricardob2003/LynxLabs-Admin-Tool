@@ -4,12 +4,16 @@ Rails.application.routes.draw do
 
   # Routes for projects, inventory and employees
   resources :projects
-  resources :employees do
+  resources :inventories
+  resources :employees
+
+  resources :addresses do
     collection do
+      get :countries
       get :states
+      get :cities
     end
   end
-  resources :inventories
 
   # Registrations Routes
   resources :registrations, path: "registrations", only: [:show, :destroy]

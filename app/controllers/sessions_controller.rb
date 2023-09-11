@@ -21,14 +21,14 @@ class SessionsController < ApplicationController
       @session = user.sessions.create!
       cookies.signed.permanent[:session_token] = { value: @session.id, httponly: true }
 
-      redirect_to home_page_path, notice: "Ha Iniciado Sesión Exitosamente"
+      redirect_to home_page_path
     else
       redirect_to sign_in_path(email_hint: params[:email]), alert: "Credenciales Incorrectas"
     end
   end
 
   def destroy
-    @session.destroy; redirect_to(sessions_path, notice: "Esta sesión se ha terminado")
+    @session.destroy; redirect_to(sessions_path)
   end
 
   private

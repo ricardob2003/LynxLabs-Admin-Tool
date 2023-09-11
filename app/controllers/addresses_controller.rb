@@ -57,6 +57,22 @@ class AddressesController < ApplicationController
     end
   end
 
+  def countries
+    render json: CS.countries, status: :ok
+  end
+
+  def states
+    selected_country = params[:country]
+    render json: CS.states(selected_country).with_indifferent_access, status: :ok
+  end
+
+  def cities
+    country = params[:country]
+    state = params[:state]
+    cities = CS.cities(state, country) || []
+    render json: cities, status: :ok
+  end
+
   private
 
   # Use callbacks to share common setup or constraints between actions.

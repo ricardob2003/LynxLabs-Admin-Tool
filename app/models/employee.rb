@@ -10,5 +10,8 @@ class Employee < ApplicationRecord
   validates :nombre, :apellido, :nacionalidad, :developer, presence: { message: "no puede estar en blanco" }
   validates :estado_civil, inclusion: { in: ["Soltero", "Casado", "Union Libre", "Divorciado", "Viudo"], message: "debe ser una opción válida" }
   validates :dni, :rtn, presence: { message: "tiene que ser un número válido y único" }, uniqueness: true
-  validates :contrato, inclusion: { in: ["Activo", "No Activo"], message: "no es una opción válida" }
+  validates :contrato, inclusion: { in: ["activo", "no activo"], message: "no es una opción válida" }
+  enum contrato: { activo: 'activo', no_activo: 'no activo' }
+  validates :contrato, inclusion: { in: contratos.keys, message: "no es una opción válida" }
+
 end

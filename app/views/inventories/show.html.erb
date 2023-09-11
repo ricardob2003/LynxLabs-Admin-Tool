@@ -1,32 +1,44 @@
 <p style="color: green"><%= notice %></p>
 <%= render @inventory %>
-<div class="col-md-4">
+<div class="col-md-4" style="margin-bottom: 20px;">
   <%= link_to "Editar", edit_inventory_path(@inventory), class: "button btn btn-outline-secondary" %>
 </div>
-<div style="text-align: center; margin-top: 80px;">
+<div style="text-align: center; margin-top: 80px; margin-bottom: 20px;">
   <% if @inventory.status == "Disponible" %>
-    <%= link_to "Asignar Equipo", "#", id: "assign-equipment-link", class: "user-button" %>
+    <button id="assign-equipment-link" type="button" class="btn btn-primary"> Asignar Equipo  </button>
   <% elsif @inventory.status == "Asignado" %>
-    <%= link_to "Extraer Equipo", extract_equipment_task_path(@task), class: "user-button" %>
+    <button id="extract-equipment-link" type="button" class="btn btn-primary"> Extraer Equipo  </button>
   <% end %>
 </div>
-<div id="assign-equipment-form" style="display: none;">
-  <%= render 'tasks/assign_equipment_form', task: @task %>
-</div>
+<% if @inventory.status == "Disponible" %>
+  <div id="assign-equipment-form" style="display: none; margin-bottom: 20px;"> <!-- Add margin-bottom -->
+    <%= render 'tasks/assign_equipment_form', task: @task %>
+  </div>
+<% elsif @inventory.status == "Asignado" %>
+  <div id="extract-equipment-form" style="display: none; margin-bottom: 20px;"> <!-- Add margin-bottom -->
+    <%= render 'tasks/extract_equipment_form', task: @task %>
+  </div>
+<% end %>
 <script>
-  document.addEventListener("DOMContentLoaded", function() {
+  document.addEventListener("turbo:load", function() {
     const assignEquipmentLink = document.getElementById("assign-equipment-link");
     const assignEquipmentForm = document.getElementById("assign-equipment-form");
+    const extractEquipmentLink = document.getElementById("extract-equipment-link");
+    const extractEquipmentForm = document.getElementById("extract-equipment-form");
 
-    assignEquipmentLink.addEventListener("click", function(event) {
-      event.preventDefault();
-      assignEquipmentForm.style.display = "block";
-    });
+    if (assignEquipmentLink) {
+      assignEquipmentLink.addEventListener("click", function() {
+        assignEquipmentForm.style.display = "block";
+        if (extractEquipmentForm) extractEquipmentForm.style.display = "none";
+      });
+    }
 
-    const assignEquipmentFormSubmit = assignEquipmentForm.querySelector("form");
+    if (extractEquipmentLink) {
+      extractEquipmentLink.addEventListener("click", function() {
+        extractEquipmentForm.style.display = "block";
+        if (assignEquipmentForm) assignEquipmentForm.style.display = "none";
+      });
+    }
 
-    assignEquipmentFormSubmit.addEventListener("submit", function(event) {
-      assignEquipmentForm.style.display = "none";
-    });
   });
 </script>

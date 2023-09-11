@@ -1,0 +1,11 @@
+<div class="employee-perfil">
+  <h2><strong>Nombre:</strong> <%= @employee.nombre %></h2>
+  <p><strong>Apellido:</strong> <%= @employee.apellido %></p>
+  <p><strong>Nacionalidad:</strong> <%= @employee.nacionalidad %></p>
+  <p><strong>Estado Civil:</strong> <%= @employee.estado_civil %></p>
+  <p><strong>Ubicación:</strong> <%= full_location(@employee.address) %></p>
+  <p><strong>Tipo de Contrato:</strong> <%= @employee.contrato %></p>
+  <p><strong>Developer:</strong> <%= @employee.developer %></p>
+  <p><strong>DNI:</strong> <%= @employee.dni %></p>
+  <p><strong>RTN:</strong> <%= @employee.rtn %></p>
+</div>

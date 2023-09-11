@@ -12,7 +12,13 @@ module LynxLabsProject
     config.load_defaults 7.0
 
     # Configuration for the application, engines, and railties goes here.
-    #
+    # CORS configuration for handling cross-origin requests
+    config.middleware.insert_before 0, Rack::Cors do
+      allow do
+        origins "*" # Allow requests from any origin
+        resource "*", headers: :any, methods: [:get, :post, :put, :patch, :delete, :options, :head]
+      end
+    end
     # These settings can be overridden in specific environments using the files
     # in config/environments, which are processed later.
     #

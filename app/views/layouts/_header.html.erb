@@ -20,9 +20,11 @@
       </li>
     </ul>
     <ul class="right">
-      <li>
-        <%= button_to("Cerrar Sesión", Current.session, method: :delete, class: "button") %>
-      </li>
+      <% if  @user_signed_in %>
+        <li>
+          <%= button_to("Cerrar Sesión", Current.session, method: :delete, class: "button") %>
+        </li>
+      <% end %>
     </ul>
   </nav>
 </header>

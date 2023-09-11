@@ -8,7 +8,11 @@ class TasksController < ApplicationController
 
   # GET /tasks/1 or /tasks/1.json
   def show
+    @inventory = Inventory.find(params[:id])
+    @task = @inventory.tasks.find_by(:status)
+
   end
+
 
   # GET /tasks/new
   def new
@@ -84,13 +88,13 @@ class TasksController < ApplicationController
     respond_to do |format|
       if @task.extract_equipment
         @task.inventory.update(status: "Disponible")
-          flash[:notice] = "Equipment extracted successfully."
+          flash[:notice] = "Equipment extraido successfully."
           redirect_to inventory_path(@task.inventory)
         end
         format.json { render :show, status: :ok, location: @task }
       else
         format.html do
-          flash.now[:alert] = "Failed to extract equipment."
+          flash.now[:alert] = "No se pudo extraer el Equipo."
           render :show, status: :unprocessable_entity
         end
         format.json { render json: @task.errors, status: :unprocessable_entity }

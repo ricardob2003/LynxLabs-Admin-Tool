@@ -8,6 +8,7 @@ class EmployeesController < ApplicationController
 
   # GET /employees/1
   def show
+    @employee = Employee.find(params[:id])
   end
 
   # GET /employees/new
@@ -22,8 +23,8 @@ class EmployeesController < ApplicationController
 
   # POST /employees
   def create
-    @employee = Employee.new(employee_params)
-
+    @employee = Employee.new(employee_params)  # Instantiate the @employee variable
+    debugger
     if @employee.save
       redirect_to @employee, notice: "El Perfil del Empleado fue creado exitosamente"
     else
@@ -34,7 +35,7 @@ class EmployeesController < ApplicationController
   # PATCH/PUT /employees/1
   def update
     if @employee.update(employee_params)
-      redirect_to @employee, notice: "El Perfil del Empleado se actualizo exitosamente"
+      redirect_to employees_path, notice: "El Perfil del Empleado se actualizo exitosamente"
     else
       render :edit
     end

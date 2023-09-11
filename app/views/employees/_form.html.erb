@@ -2,48 +2,49 @@
   <%= render "shared/errors", object: @employee %>
   <div class="form-row">
     <div class="form-column">
-      <%= f.label :nombre %>
-      <%= f.text_field :nombre, autofocus: true %>
+      <%= f.label :nombre, class: 'label-display-block' %>
+      <%= f.text_field :nombre, autofocus: true, class: 'form-control' %>
     </div>
     <div class="form-column">
-      <%= f.label :apellido %>
-      <%= f.text_field :apellido %>
+      <%= f.label :apellido, class: 'label-display-block' %>
+      <%= f.text_field :apellido, class: 'form-control' %>
     </div>
   </div>
   <div class="form-row">
-    <%= f.label :nacionalidad %>
-    <%= f.text_field :nacionalidad %>
-  </div>
-  <div class="form-row">
-    <%= f.label :estado_civil %>
-    <%= f.select :estado_civil, ['Soltero', 'Casado', 'Union Libre', 'Divorciado', 'Viudo'], prompt: 'Seleccione Estado Civil' %>
+    <div class="form-column">
+      <%= f.label :nacionalidad, class: 'label-display-block' %>
+      <%= f.text_field :nacionalidad, class: 'form-control' %>
+    </div>
+    <div class="form-column">
+      <%= f.label :estado_civil, class: 'label-display-block' %>
+      <%= f.select :estado_civil, ['Soltero', 'Casado', 'Union Libre', 'Divorciado', 'Viudo'], prompt: 'Seleccione Estado Civil', class: 'form-control' %>
+    </div>
   </div>
   <%= f.fields_for :address do |address_fields| %>
     <%= render "addresses/nested_form", f: address_fields %>
+    <%= render "shared/errors", object: address_fields.object %>
   <% end %>
-  <div class="form-row">
-    <div class="form-row">
-      <%= f.label :contrato, "Estatus" %>
-      <div class="radio-options">
-        <%= f.collection_radio_buttons :contrato, [['Activo', 'activo'], ['No Activo', 'no-activo']], :second, :first, item_wrapper_class: 'radio-inline', class: 'radio-input' %>
-      </div>
-    </div>
-    <div class="form-row">
-      <%= f.label :developer, "Tipo de Developer"  %>
-      <%= f.text_field :developer %>
-    </div>
-    <div class="form-row">
-      <div class="form-column">
-        <%= f.label :dni, "Documento de Identidad"  %>
-        <%= f.text_field :dni %>
-      </div>
-      <div class="form-column">
-        <%= f.label :rtn, "RTN" %>
-        <%= f.text_field :rtn %>
-      </div>
+  <div class="form-row" style="width: 503px;">
+    <%= f.label :contrato, "Estatus", class: 'label-display-block' %>
+    <div class="radio-options">
+      <%= f.collection_radio_buttons :contrato, [['Activo', 'activo'], ['No Activo', 'no-activo']], :second, :first, item_wrapper_class: 'radio-inline', class: 'radio-input' %>
     </div>
   </div>
-  <div class="form-row">
+  <div class="form-row" style="width: 503px;">
+    <div class="form-column">
+      <%= f.label :developer, "Tipo de Developer", class: 'label-display-block' %>
+      <%= f.text_field :developer, class: 'form-control' %>
+    </div>
+    <div class="form-column">
+      <%= f.label :dni, "Documento de Identidad", class: 'label-display-block' %>
+      <%= f.text_field :dni, class: 'form-control' %>
+    </div>
+    <div class="form-column">
+      <%= f.label :rtn, "RTN", class: 'label-display-block' %>
+      <%= f.text_field :rtn, class: 'form-control' %>
+    </div>
+  </div>
+  <div class="form-row" style="width: 503px;">
     <%= f.submit "Agregar Perfil del Empleado" %>
   </div>
 <% end %>

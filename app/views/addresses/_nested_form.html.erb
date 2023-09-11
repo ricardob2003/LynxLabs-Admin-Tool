@@ -1,18 +1,69 @@
-<div data-controller ="address">
-  <div class="form-row">
-    <%= f.label :country , "Pais", style: "display: block" %>
-    <%= f.select :country, f.object.countries.invert, { prompt: "Seleccione Pais de Residencia" }, { class: 'form-select'} %>
-  </div>
-  <div class="form-row">
-    <%= f.label :state , "Departamento", style: "display: block"  %>
-    <%= f.select :state, f.object.states.invert, { prompt: "Seleccione Estado de Residencia" }, { class: 'form-select' } %>
-  </div>
-  <div class="form-row">
-    <%= f.label :city, "Ciudad" , style: "display: block" %>
-    <%= f.select :city, f.object.cities.reverse, { prompt: "Seleccione Ciudad de Residencia" }, {} %>
-  </div>
+<div class="form-row">
+  <%= f.label :country, "Pais", class: "display-block" %>
+  <select name="employee[address_attributes][country]" id="country" class="form-select">
+  </select>
 </div>
 <div class="form-row">
-  <%= f.label :address_line_1, "Colonia", style: "display: block" %>
-  <%= f.text_field :address_line_1 %>
+  <%= f.label :state, "Departamento", class: "display-block" %>
+  <select name="employee[address_attributes][state]" id="state" class="form-select"></select>
+</div>
+<div class="form-row">
+  <%= f.label :city, "Ciudad", class: "display-block" %>
+  <select name="employee[address_attributes][city]" id="city" class="form-select"></select>
+</div>
+<script>
+  document.addEventListener("turbo:load", function () {
+    const countrySelector = document.getElementById("country");
+    const stateSelector = document.getElementById("state");
+    const citySelector = document.getElementById("city");
+
+    const getData = function (request) {
+      return new Promise(function (resolve, reject) {
+        const xhr = new XMLHttpRequest();
+        xhr.open("GET", request, true);
+        xhr.getResponseHeader("Content-type", "application/json");
+
+        xhr.onload = function () {
+          const obj = JSON.parse(this.responseText);
+          resolve(obj);
+        };
+        xhr.send();
+      });
+    };
+
+    getData("/addresses/countries").then(function (result) {
+      Object.keys(result).forEach((country, index) => {
+        const option = document.createElement("option");
+        option.setAttribute("value", country);
+        option.innerHTML = result[country];
+        countrySelector.add(option, null);
+      });
+    });
+
+    countrySelector.onchange = function (event) {
+      getData("/addresses/states?country=" + event.target.value).then(function (result) {
+        Object.keys(result).forEach((state, index) => {
+          const option = document.createElement("option");
+          option.setAttribute("value", state);
+          option.innerHTML = result[state];
+          stateSelector.add(option, null);
+        });
+      });
+    };
+
+    stateSelector.onchange = function (event) {
+      getData("/addresses/cities?state=" + event.target.value).then(function (result) {
+        Object.keys(result).forEach((city, index) => {
+          const option = document.createElement("option");
+          option.setAttribute("value", city);
+          option.innerHTML = result[city];
+          citySelector.add(option, null);
+        });
+      });
+    };
+  });
+</script>
+<div class="form-row">
+  <%= f.label :address_line_1, "Colonia", class: "display-block" %>
+  <%= f.text_field :address_line_1, class: "form-control" %>
 </div>

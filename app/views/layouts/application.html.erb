@@ -9,15 +9,11 @@
     <%= javascript_importmap_tags %>
   </head>
   <body>
-    <% if @user_signed_in %>
-      <%= render "layouts/header" %>
-    <% end %>
-    <div class="content">
-      <%= render "layouts/flash" %>
+    <%= render "layouts/header"%>
+    <div class = "content">
+      <%= render "layouts/flash"%>
       <%= yield %>
     </div>
-    <% if @user_signed_in %>
-      <%= render "layouts/footer" %>
-    <% end %>
+    <%= render "layouts/footer"%>
   </body>
 </html>

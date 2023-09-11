@@ -10,7 +10,6 @@
           <th style="background-color: #470247; color: #ededed; font-weight: bold;">Apellido</th>
           <th style="background-color: #470247; color: #ededed; font-weight: bold;">Nacionalidad</th>
           <th style="background-color: #470247; color: #ededed; font-weight: bold;">Estado Civil</th>
-          <th style="background-color: #470247; color: #ededed; font-weight: bold;">Ubicación </th>
           <th style="background-color: #470247; color: #ededed; font-weight: bold;">Tipo de Contrato</th>
           <th style="background-color: #470247; color: #ededed; font-weight: bold;">Developer</th>
           <th style="background-color: #470247; color: #ededed; font-weight: bold;">DNI</th>
@@ -21,15 +20,10 @@
       <tbody>
         <% @employees.each do |employee| %>
           <tr>
-            <td style="color: #000000;">
-              <%= employee.nombre %>
-            </td>
+            <td><%= link_to employee.nombre, employee_path(employee), style: "color: #000000; font-weight: bold;" %></td>
             <td style="color: #000000;"><%= employee.apellido %></td>
             <td style="color: #000000;"><%= employee.nacionalidad %></td>
             <td style="color: #000000;"><%= employee.estado_civil %></td>
-            <td style="color: #000000;">
-              <%= "#{employee.city.name}, #{employee.city.region.name}, #{employee.city.region.country.name}" %>
-            </td>
             <td style="color: #000000;"><%= employee.contrato %></td>
             <td style = "color:#00000;"> <%= employee.developer%>
               <td style="color: #000000;"><%= employee.dni %></td>
@@ -46,9 +40,6 @@
       </table>
     </div>
     <%= link_to "Crear Nuevo Empleado", new_employee_path(@empleados), class: "btn btn-primary square-button btn-block btn-lg", "data-bs-toggle": "button", role: "button" %>
-  </div>
-  <div id = "employee-info-container">
-    <%= render 'employees/profile' %>
   </div>
   <%# Define Script function %>
   <script>
