@@ -1,15 +1,26 @@
 <div class="form-row">
   <%= f.label :country, "Pais", class: "display-block" %>
-  <select name="employee[address_attributes][country]" id="country" class="form-select">
-  </select>
+  <% if params[:action] == "edit" && @employee.address.present? %>
+    <%= loadSelectedCountry %>
+  <% else %>
+    <select name="employee[address_attributes][country]" id="country" class="form-select"></select>
+  <% end %>
 </div>
 <div class="form-row">
   <%= f.label :state, "Departamento", class: "display-block" %>
-  <select name="employee[address_attributes][state]" id="state" class="form-select"></select>
+  <% if params[:action] == "edit" && @employee.address.present? %>
+    <%= loadSelectedState %>
+  <% else %>
+    <select name="employee[address_attributes][state]" id="state" class="form-select"></select>
+  <% end %>
 </div>
 <div class="form-row">
   <%= f.label :city, "Ciudad", class: "display-block" %>
-  <select name="employee[address_attributes][city]" id="city" class="form-select"></select>
+  <% if params[:action] == "edit" && @employee.address.present? %>
+    <%= loadSelectedCity %>
+  <% else %>
+    <select name="employee[address_attributes][city]" id="city" class="form-select"></select>
+  <% end %>
 </div>
 <script>
   document.addEventListener("turbo:load", function () {

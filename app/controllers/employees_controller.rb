@@ -24,7 +24,6 @@ class EmployeesController < ApplicationController
   # POST /employees
   def create
     @employee = Employee.new(employee_params)  # Instantiate the @employee variable
-    debugger
     if @employee.save
       redirect_to @employee, notice: "El Perfil del Empleado fue creado exitosamente"
     else
