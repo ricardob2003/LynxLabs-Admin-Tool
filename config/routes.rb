@@ -3,7 +3,11 @@ Rails.application.routes.draw do
   root to: "sessions#new"
 
   # Routes for projects, inventory and employees
-  resources :projects
+  resources :projects do
+    member do
+      post "link_employee"
+    end
+  end
   resources :inventories
   resources :employees
 

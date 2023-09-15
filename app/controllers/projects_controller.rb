@@ -43,6 +43,21 @@ class ProjectsController < ApplicationController
     redirect_to projects_url, status: :unprocessable_entity, notice: "Proyecto #{project.name} se ha eliminado exitosamente"
   end
 
+  def link_employee
+    @project = Project.find(params[:id])
+    @employee = Employee.find(params[:employee_id])
+
+    @project_assignment = ProjectAssignment.new(project: @project, employee: @employee)
+
+    if @project_assignment.save
+      flash[:notice] = "El Empleado se ha asignado exitosamente al proyecto"
+    else
+      flash[:alert] = "EL Empleado no se logro asignar exitosamente al proyecto"
+    end
+
+    redirect_to @project
+  end
+
   private
 
   def set_project

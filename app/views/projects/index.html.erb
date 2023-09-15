@@ -1,10 +1,11 @@
+Code Snippet for Projects Edit Table     
 <div>
   <%= form_tag(projects_path, method: "get", id: "filter-form-inventories") do %>
     <%= label_tag :status, "Proyecto:" %>
     <%= select_tag :status, options_for_select([['Asignado', 'Asignado'], ['Development', 'Development'], ['Production', 'Production'], ['Entregado', 'Entregado']], params[:status]), prompt: 'Todos los Proyectos', onchange: "this.form.submit();" %>
   <% end %>
 </div>
-<div> <!-- Custom CSS styling class -->
+<div>
   <table class="table">
     <thead>
       <tr>
@@ -14,7 +15,7 @@
         <th style="background-color: #470247; color: #ededed; font-weight: bold;">Fecha de Entrega Estimada</th>
         <th style="background-color: #470247; color: #ededed; font-weight: bold;">Status</th>
         <th style="background-color: #470247; color: #ededed; font-weight: bold;">Bitacora del Proyecto</th>
-        <th colspan="2" style="background-color: #470247; color: #ededed; font-weight: bold;">Acciones del Proyecto</th>
+        <th colspan="3" style="background-color: #470247; color: #ededed; font-weight: bold;">Acciones del Proyecto</th>
       </tr>
     </thead>
     <tbody>
@@ -31,7 +32,7 @@
             <%= truncate(project.bitacora_del_proyecto, length: 75) %>
           </td>
           <td>
-            <%= link_to "Eliminar proyecto", project_path(project),data: { turbo_method: :delete, turbo_confirm: "Estás seguro de que quieres eliminar este project? Esta acción no se puede deshacer." }, class: "btn btn-danger" %>
+            <%= link_to "Eliminar proyecto", project_path(project), data: { turbo_method: :delete, turbo_confirm: "Estás seguro de que quieres eliminar este proyecto? Esta acción no se puede deshacer." }, class: "btn btn-danger" %>
           </td>
         </tr>
       <% end %>

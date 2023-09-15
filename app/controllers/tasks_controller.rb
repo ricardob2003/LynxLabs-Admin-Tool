@@ -10,9 +10,7 @@ class TasksController < ApplicationController
   def show
     @inventory = Inventory.find(params[:id])
     @task = @inventory.tasks.find_by(:status)
-
   end
-
 
   # GET /tasks/new
   def new
@@ -21,21 +19,6 @@ class TasksController < ApplicationController
 
   # GET /tasks/1/edit
   def edit
-  end
-
-  # POST /tasks or /tasks.json
-  def create
-    @task = Task.new(task_params)
-
-    respond_to do |format|
-      if @task.save
-        format.html { redirect_to task_url(@task), notice: "Task was successfully created." }
-        format.json { render :show, status: :created, location: @task }
-      else
-        format.html { render :new, status: :unprocessable_entity }
-        format.json { render json: @task.errors, status: :unprocessable_entity }
-      end
-    end
   end
 
   # PATCH/PUT /tasks/1 or /tasks/1.json
@@ -63,15 +46,15 @@ class TasksController < ApplicationController
 
   # POST /tasks/:id/assign_equipment
   def assign_equipment
-    @employee = Employee.find(params[:employee_id])
-    @equipment = Equipment.find(params[:equipment_id])
-
-    @task = Task.new(employee: @employee, equipment: @equipment)
+    @employee = Employee.find(params[:task][:employee_id])
+    @inventory = Inventory.find(params[:id])
+    @user = User.find(params[:task][:assigned_by_id])
+    @task = Task.new(assigned_by: @user, employee: @employee, inventory: @inventory)
 
     respond_to do |format|
       if @task.save
         # Update the status of the related inventory to "Asignado"
-        @equipment.inventory.update(status: "Asignado")
+        @inventory.update(status: "Asignado")
 
         format.html { redirect_to @employee, notice: "El equipo fue asignado al empleado." }
         format.json { render :show, status: :created, location: @employee }
@@ -87,11 +70,9 @@ class TasksController < ApplicationController
 
     respond_to do |format|
       if @task.extract_equipment
-        @task.inventory.update(status: "Disponible")
-          flash[:notice] = "Equipment extraido successfully."
-          redirect_to inventory_path(@task.inventory)
-        end
-        format.json { render :show, status: :ok, location: @task }
+        @inventory.update(status: "Disponible")
+        flash[:notice] = "Equipment extraido successfully."
+        redirect_to inventory_path(@task.inventory)
       else
         format.html do
           flash.now[:alert] = "No se pudo extraer el Equipo."
@@ -110,8 +91,8 @@ class TasksController < ApplicationController
   end
 
   # Only allow a list of trusted parameters through.
-  def task_params
-    params.require(:task).permit(:date_of_assignment, :date_of_extraction, :equipment_log, :assigned_by)
+  def assign_params
+    params.require(:task).permit(:date_of_assignment, :equipment_log, :employee_id, :assigned_by_id)
   end
 
   def extraction_params

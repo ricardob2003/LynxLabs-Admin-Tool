@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_08_17_234114) do
+ActiveRecord::Schema[7.0].define(version: 2023_09_15_144910) do
   create_table "addresses", force: :cascade do |t|
     t.string "country"
     t.string "state"
@@ -95,6 +95,9 @@ ActiveRecord::Schema[7.0].define(version: 2023_08_17_234114) do
     t.string "assigned_by"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "employee_id", null: false
+
+    t.index ["employee_id"], name: "index_tasks_on_employee_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -113,4 +116,5 @@ ActiveRecord::Schema[7.0].define(version: 2023_08_17_234114) do
   add_foreign_key "project_assignments", "employees"
   add_foreign_key "project_assignments", "projects"
   add_foreign_key "sessions", "users"
+  add_foreign_key "tasks", "employees"
 end
