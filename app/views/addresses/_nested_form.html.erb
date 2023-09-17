@@ -1,15 +1,30 @@
 <div class="form-row">
   <%= f.label :country, "Pais", class: "display-block" %>
   <select name="employee[address_attributes][country]" id="country" class="form-select">
+    <% if params[:action] == "edit" && @employee.address.present? %>
+      <% selected_country = selectedCountry(@employee)&.to_sym %>
+      <option value="<%= selected_country %>"><%= selected_country %></option>
+    <% end %>
   </select>
 </div>
 <div class="form-row">
   <%= f.label :state, "Departamento", class: "display-block" %>
-  <select name="employee[address_attributes][state]" id="state" class="form-select"></select>
+  <select name ="employee[address_attributes][state]" id="state" class = "form-select">
+    <% if params[:action] == "edit" && @employee.address.present? %>
+      <% selected_state = selectedState(@employee)&.to_sym%>
+      <%= selectedState(@employee) %>
+      <option value="<%= selected_state %>"><%= selected_state %></option>
+    <% end %>
+  </select>
 </div>
 <div class="form-row">
   <%= f.label :city, "Ciudad", class: "display-block" %>
-  <select name="employee[address_attributes][city]" id="city" class="form-select"></select>
+  <select name ="employee[address_attributes][city]" id="city" class = "form-select">
+    <% if params[:action] == "edit" && @employee.address.present? %>
+      <%= selected_city = selectedCity(@employee)&.to_sym %>
+      <option value="<%= selected_city %>"><%= selected_city %></option>
+    <% end %>
+  </select>
 </div>
 <script>
   document.addEventListener("turbo:load", function () {
@@ -61,6 +76,35 @@
         });
       });
     };
+
+    // Use different variable names to avoid conflicts
+  const selectedCountryValue = "<%= selectedCountry(@employee)&.to_sym %>";
+  const selectedStateValue = "<%= selectedState(@employee)&.to_sym %>";
+  const selectedCityValue = "<%= selectedCity(@employee)&.to_sym %>";
+
+  if (selectedCountryValue) {
+  countrySelector.value = selectedCountryValue;
+  }
+
+  if (selectedStateValue) {
+  stateSelector.value = selectedStateValue;
+  }
+
+  if (selectedCityValue) {
+  citySelector.value = selectedCityValue;
+  }
+
+    if (selectedCountryValue) {
+      countrySelector.value = selectedCountryValue;
+    }
+
+    if (selectedStateValue) {
+      stateSelector.value = selectedStateValue;
+    }
+
+    if (selectedCityValue) {
+      citySelector.value = selectedCityValue;
+    }
   });
 </script>
 <div class="form-row">

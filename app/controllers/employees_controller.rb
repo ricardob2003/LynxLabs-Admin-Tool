@@ -19,12 +19,12 @@ class EmployeesController < ApplicationController
 
   # GET /employees/1/edit
   def edit
+    @employee = Employee.find(params[:id])
   end
 
   # POST /employees
   def create
     @employee = Employee.new(employee_params)  # Instantiate the @employee variable
-    debugger
     if @employee.save
       redirect_to @employee, notice: "El Perfil del Empleado fue creado exitosamente"
     else
