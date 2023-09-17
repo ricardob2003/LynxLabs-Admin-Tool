@@ -1,17 +1,17 @@
 module EmployeesHelper
-  def loadSelectedCountry
-    @country = params[:employee][:address_attributes][:country]
-    return country.to_sym
+  def selectedCountry(employee)
+    country = employee.address.country if employee.address.present?
+    return country
   end
 
-  def loadSelectedState
-    @state = params[:employee][:address_attributes][:state]
-    return state.to_sym
+  def selectedState(employee)
+    state = employee.address.state if employee.address.present?
+    return state
   end
 
-  def loadSelectedCity
-    @city = params[:employee][:address_attributes][:city]
-    return city.to_sym
+  def selectedCity(employee)
+    city = employee.address.city if employee.address.present?
+    return city
   end
 
   def full_location(address)
