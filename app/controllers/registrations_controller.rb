@@ -31,7 +31,10 @@ class RegistrationsController < ApplicationController
   private
 
   def user_params
-    params.permit(:email, :password, :password_confirmation)
+    # Permit the username parameter and strip leading/trailing spaces
+    params.permit(:email, :password, :password_confirmation, :username).tap do |whitelisted|
+      whitelisted[:username] = params[:username].strip if params[:username].present?
+    end
   end
 
   def send_email_verification

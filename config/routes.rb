@@ -8,8 +8,19 @@ Rails.application.routes.draw do
       post "link_employee"
     end
   end
-  resources :inventories
-  resources :employees
+
+  resources :inventories do
+    member do
+      get "task_history"
+    end
+  end
+
+  resources :employees do
+    member do
+      post "associate_with_project"
+      delete "unlink_project"
+    end
+  end
 
   resources :addresses do
     collection do
@@ -42,10 +53,10 @@ Rails.application.routes.draw do
   get "home_page", to: "home#index"
 
   # Routes for the "tasks" resource
-  resources :tasks do
+  resources :tasks, except: [:create, :update] do
     member do
-      post "assign_equipment"
-      post "extract_equipment"
+      post "assign_equipment", to: "tasks#create" # Map assign_equipment to create
+      patch "extract_equipment", to: "tasks#update" # Map extract_equipment to update
     end
   end
 end

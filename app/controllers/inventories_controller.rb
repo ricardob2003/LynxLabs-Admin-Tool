@@ -9,7 +9,8 @@ class InventoriesController < ApplicationController
   # GET /inventories/1 or /inventories/1.json
   def show
     @inventory = Inventory.find(params[:id])
-    @task = Task.new
+    @task = Task.find_by(inventory_id: @inventory.id)
+    @task ||= Task.new
   end
 
   # GET /inventories/new
@@ -57,6 +58,12 @@ class InventoriesController < ApplicationController
       format.html { redirect_to inventories_path, notice: "El equipo se ha eliminado exitosamente del inventario." }
       format.json { head :no_content }
     end
+  end
+
+  def task_history
+    @inventory = Inventory.find(params[:id])
+    @task = @inventory.task
+    # Add any additional logic to retrieve and display task history if needed
   end
 
   private

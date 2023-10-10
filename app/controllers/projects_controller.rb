@@ -40,22 +40,20 @@ class ProjectsController < ApplicationController
 
   def destroy
     @project.destroy
-    redirect_to projects_url, status: :unprocessable_entity, notice: "Proyecto #{project.name} se ha eliminado exitosamente"
+    redirect_to projects_url, status: :unprocessable_entity, notice: "Proyecto #{@project.name} se ha eliminado exitosamente"
   end
 
   def link_employee
     @project = Project.find(params[:id])
-    @employee = Employee.find(params[:employee_id])
+    employee_id = params[:project][:employee_ids] # Use employee_ids
 
-    @project_assignment = ProjectAssignment.new(project: @project, employee: @employee)
-
-    if @project_assignment.save
-      flash[:notice] = "El Empleado se ha asignado exitosamente al proyecto"
+    if @project && employee_id
+      @project.employees << Employee.find(employee_id) # Create the association
+      redirect_to @project, notice: "Empleado vinculado exitosamente."
     else
-      flash[:alert] = "EL Empleado no se logro asignar exitosamente al proyecto"
+      # Handle error case if necessary
+      redirect_to @project, alert: "No se pudo vincular al empleado."
     end
-
-    redirect_to @project
   end
 
   private

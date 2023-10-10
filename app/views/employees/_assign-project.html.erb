@@ -1,0 +1,7 @@
+<%= form_for @employee, url: associate_with_project_employee_path, method: :post do |f| %>
+  <div class="form-group">
+    <%= f.label :project_ids, "Seleccione Proyecto:" %>
+    <%= f.select :project_ids, options_for_select(Project.all.map { |p| [p.name, p.id] }), { prompt: "Seleccione un proyecto" }, class: "form-control" %>
+  </div>
+  <%= f.submit 'Asignar Proyecto', class: 'btn btn-primary',style: 'margin-bottom: 20px;' %>
+<% end %>

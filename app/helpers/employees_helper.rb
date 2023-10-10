@@ -18,7 +18,16 @@ module EmployeesHelper
     country_name = CS.countries[address&.country&.to_sym] || address&.country
     state_name = CS.states(address&.country&.to_sym)&.fetch(address&.state&.to_sym, address&.state) || address&.state
     city_name = CS.cities(address&.state&.to_sym, address&.country&.to_sym).try(:[], address&.city.to_i) || address&.city
+    address_line_1 = address&.address_line_1
 
-    "#{city_name}, #{state_name}, #{country_name}"
+    location_parts = [
+      address_line_1,
+      "<strong>#{city_name}</strong>",
+      "<strong>#{state_name}</strong>",
+      "<strong>#{country_name}</strong>",
+    ].compact
+
+    location_string = location_parts.join(", ")
+    location_string.html_safe
   end
 end

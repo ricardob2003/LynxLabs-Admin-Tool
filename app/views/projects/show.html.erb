@@ -12,7 +12,7 @@
         <ul>
           <% @project.employees.each do |employee| %>
             <li>
-              <%= link_to "#{employee.nombre} #{employee.appellido}", employee_path(employee) %>
+              <%= link_to "#{employee.nombre} #{employee.apellido}", employee_path(employee), class: "list-associations" %>
             </li>
           <% end %>
         </ul>
@@ -20,28 +20,29 @@
         <p>No se han asignado empleados a este proyecto.</p>
       <% end %>
       <!-- Add Assign Employee link and form -->
-      <button id="assign-employee-button" type = "button" class = "btn btn-primary" >Asignar Empleado</button>
+      <button id="assign-employee-button" type="Submit" class="btn btn-primary">Asignar Empleado</button>
       <!-- Form for assigning an employee (initially hidden) -->
       <div id="assign-employee-form" style="display: none;">
         <%= render "assign_employee" %>
       </div>
-    </div>
-    <div class="col-md-4">
-      <%= link_to "Editar", edit_project_path(@project), class: "button btn btn-outline-secondary" %>
     </div>
   </div>
 </section>
 <!-- JavaScript (already provided) -->
 <script>
   document.addEventListener("turbo:load", function() {
-  const assignEmployeeButton = document.getElementById("assign-employee-button");
-  const assignEmployeeForm = document.getElementById("assign-employee-form");
+    const assignEmployeeButton = document.getElementById("assign-employee-button");
+    const assignEmployeeForm = document.getElementById("assign-employee-form");
 
-  if (assignEmployeeButton) {
-    assignEmployeeButton.addEventListener("click", function(e) {
-      e.preventDefault();
-      assignEmployeeForm.style.display = "block";
-    });
-  }
+    if (assignEmployeeButton) {
+      assignEmployeeButton.addEventListener("click", function(e) {
+        e.preventDefault();
+        if (assignEmployeeForm.style.display === "none") {
+          assignEmployeeForm.style.display = "block";
+        } else {
+          assignEmployeeForm.style.display = "none";
+        }
+      });
+    }
   });
 </script>

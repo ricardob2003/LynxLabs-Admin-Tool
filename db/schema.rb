@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_09_15_144910) do
+ActiveRecord::Schema[7.0].define(version: 2023_10_04_183748) do
   create_table "addresses", force: :cascade do |t|
     t.string "country"
     t.string "state"
@@ -60,8 +60,8 @@ ActiveRecord::Schema[7.0].define(version: 2023_09_15_144910) do
   end
 
   create_table "project_assignments", force: :cascade do |t|
-    t.integer "project_id"
-    t.integer "employee_id"
+    t.integer "project_id", null: false
+    t.integer "employee_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["employee_id"], name: "index_project_assignments_on_employee_id"
@@ -91,13 +91,17 @@ ActiveRecord::Schema[7.0].define(version: 2023_09_15_144910) do
   create_table "tasks", force: :cascade do |t|
     t.date "date_of_assignment"
     t.date "date_of_extraction"
-    t.text "equipment_log"
-    t.string "assigned_by"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "employee_id", null: false
-
+    t.integer "inventory_id", null: false
+    t.integer "user_id", null: false
+    t.string "task_type"
+    t.string "assignment_log"
+    t.string "extraction_log"
     t.index ["employee_id"], name: "index_tasks_on_employee_id"
+    t.index ["inventory_id"], name: "index_tasks_on_inventory_id"
+    t.index ["user_id"], name: "index_tasks_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -117,4 +121,6 @@ ActiveRecord::Schema[7.0].define(version: 2023_09_15_144910) do
   add_foreign_key "project_assignments", "projects"
   add_foreign_key "sessions", "users"
   add_foreign_key "tasks", "employees"
+  add_foreign_key "tasks", "inventories"
+  add_foreign_key "tasks", "users"
 end

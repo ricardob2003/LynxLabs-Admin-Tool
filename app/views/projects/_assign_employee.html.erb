@@ -1,7 +1,7 @@
 <%= form_for @project, url: link_employee_project_path(@project), method: :post do |f| %>
   <div class="form-group">
-    <%= f.label :employee_id, "Seleccione Empleado:" %>
+    <%= f.label :employee_ids, "Seleccione Empleado:" %>
     <%= f.select :employee_ids, options_for_select(Employee.all.map { |e| ["#{e.nombre} #{e.apellido}", e.id] }), {}, class: "form-control" %>
   </div>
-  <%= f.submit 'Asignar Empleado', class: 'btn btn-primary' %>
+  <%= f.submit 'Asignar Empleado', class: 'btn btn-primary ' %>
 <% end %>

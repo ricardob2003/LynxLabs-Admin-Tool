@@ -1,16 +1,20 @@
 <%= form_with(model: @task, url: assign_equipment_task_path, method: :post) do |form| %>
-  <%= render "shared/errors", object: task %>
+  <%= render "shared/errors", object: @task %>
+  <%= form.hidden_field :inventory_id, value: inventory.id %>
+  <%= form.hidden_field :task_type, value: 'assignment' %>
+  <%= form.hidden_field :date_of_extraction, value: nil %>
+  <%= form.hidden_field :extraction_log, value: nil %>
   <div style="margin-bottom: 20px;">
     <%= form.label :date_of_assignment, style: "display: block" %>
     <%= form.date_field :date_of_assignment %>
   </div>
   <div style="margin-bottom: 20px;">
-    <%= form.label :equipment_log, "Bitácora del Equipo", style: "display: block" %>
-    <%= form.text_area :equipment_log %>
+    <%= form.label :assignment_log, "Bitácora del Equipo Antes de Asignar", style: "display: block" %>
+    <%= form.text_area :assignment_log %>
   </div>
   <div style="margin-bottom: 20px;">
-    <%= form.label :assigned_by_id, "Asignado por: ", style: "display: block" %>
-    <%= form.select :assigned_by_id, options_for_select(User.all.map { |user| [user.username, user.id] }), {}, class: "form-control" %>
+    <%= form.label :user_id, "Asignado por: ", style: "display: block" %>
+    <%= form.select :user_id, options_for_select(User.all.map { |user| [user.username, user.id] }), {}, class: "form-control" %>
   </div>
   <div style="margin-bottom: 20px;">
     <%= form.label :assigned_to, "Asignar a Empleado", style: "display: block" %>

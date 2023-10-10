@@ -3,20 +3,15 @@
 <div class="col-md-4" style="margin-bottom: 20px;">
   <%= link_to "Editar", edit_inventory_path(@inventory), class: "button btn btn-outline-secondary" %>
 </div>
-<div style="text-align: center; margin-top: 80px; margin-bottom: 20px;">
-  <% if @inventory.status == "Disponible" %>
-    <button id="assign-equipment-link" type="button" class="btn btn-primary"> Asignar Equipo  </button>
-  <% elsif @inventory.status == "Asignado" %>
-    <button id="extract-equipment-link" type="button" class="btn btn-primary"> Extraer Equipo  </button>
-  <% end %>
-</div>
 <% if @inventory.status == "Disponible" %>
-  <div id="assign-equipment-form" style="display: none; margin-bottom: 20px;"> <!-- Add margin-bottom -->
-    <%= render 'tasks/assign_equipment_form', task: @task %>
+  <button id="assign-equipment-link" type="button" class="btn btn-primary mb-2"> Asignar Equipo  </button>
+  <div id="assign-equipment-form" style="display: none; margin-bottom: 20px;">
+    <%= render 'tasks/assign_equipment_form', task: @task, inventory: @inventory, task_type: 'assignment' %>
   </div>
 <% elsif @inventory.status == "Asignado" %>
-  <div id="extract-equipment-form" style="display: none; margin-bottom: 20px;"> <!-- Add margin-bottom -->
-    <%= render 'tasks/extract_equipment_form', task: @task %>
+  <button id="extract-equipment-link" type="button" class="btn btn-primary mb-2"> Extraer Equipo  </button>
+  <div id="extract-equipment-form" style="display: none; margin-bottom: 20px;">
+    <%= render 'tasks/extract_equipment_form', task: @task, inventory: @inventory, task_type: 'extraction' %>
   </div>
 <% end %>
 <script>
@@ -29,16 +24,15 @@
     if (assignEquipmentLink) {
       assignEquipmentLink.addEventListener("click", function() {
         assignEquipmentForm.style.display = "block";
-        if (extractEquipmentForm) extractEquipmentForm.style.display = "none";
+        extractEquipmentForm.style.display = "none";
       });
     }
 
     if (extractEquipmentLink) {
       extractEquipmentLink.addEventListener("click", function() {
         extractEquipmentForm.style.display = "block";
-        if (assignEquipmentForm) assignEquipmentForm.style.display = "none";
+        assignEquipmentForm.style.display = "none";
       });
     }
-
   });
 </script>

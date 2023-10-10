@@ -1,5 +1,6 @@
 class Task < ApplicationRecord
-  belongs_to :employee, class_name: "Employee", foreign_key: "assigned_to_id"
+  enum task_type: { assignment: "assignment", extraction: "extraction" }
+  belongs_to :employee, class_name: "Employee", foreign_key: "employee_id"
+  belongs_to :user, class_name: "User", foreign_key: "user_id"
   belongs_to :inventory
-  belongs_to :user
 end

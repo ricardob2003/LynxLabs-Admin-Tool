@@ -1,0 +1,7 @@
+<%= form_for @employee, url: unlink_project_employee_path(@employee), method: :delete do |f| %>
+  <div class="form-group">
+    <%= f.label :project_ids, "Seleccione Proyecto:" %>
+    <%= f.select :project_ids, options_for_select(@employee.projects.map { |p| [p.name, p.id] }), { prompt: "Seleccione un proyecto" }, class: "form-control" %>
+  </div>
+  <%= f.submit 'Desvincular Proyecto', class: 'btn btn-danger', style: 'margin-bottom: 20px;' %>
+<% end %>

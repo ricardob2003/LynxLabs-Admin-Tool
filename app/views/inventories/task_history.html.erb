@@ -1,0 +1,16 @@
+<h1>Historial de: <%= @inventory.lynx_id_number %></h1>
+<% if @task %>
+  <ul>
+    <li><strong>Date of Assignment:</strong> <%= formatted_date(@task.date_of_assignment) %></li>
+    <li><strong>Date of Extraction:</strong> <%= formatted_date(@task.date_of_extraction) %></li>
+    <li><strong>Employee:</strong> <%= formatted_employee(@task) %></li>
+    <li><strong>User:</strong> <%= formatted_user(@task) %></li>
+    <li><strong>Inventory:</strong> <%= formatted_inventory(@task) %></li>
+    <li><strong>Task Type:</strong> <%= formatted_task_type(@task) %></li>
+    <li><strong>Assignment Log:</strong> <%= @task.assignment_log %></li>
+    <li><strong>Extraction Log:</strong> <%= formatted_extraction_log(@task) %></li>
+  </ul>
+<% else %>
+  <p>El Inventario no contiene detalles de historial.</p>
+<% end %>
+<%= link_to 'Regresar al Perfil de Inventario', @inventory, style: 'color: #470247;' %>

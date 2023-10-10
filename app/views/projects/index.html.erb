@@ -1,4 +1,3 @@
-Code Snippet for Projects Edit Table     
 <div>
   <%= form_tag(projects_path, method: "get", id: "filter-form-inventories") do %>
     <%= label_tag :status, "Proyecto:" %>
@@ -32,7 +31,10 @@ Code Snippet for Projects Edit Table     
             <%= truncate(project.bitacora_del_proyecto, length: 75) %>
           </td>
           <td>
-            <%= link_to "Eliminar proyecto", project_path(project), data: { turbo_method: :delete, turbo_confirm: "Estás seguro de que quieres eliminar este proyecto? Esta acción no se puede deshacer." }, class: "btn btn-danger" %>
+            <%= link_to "Editar", edit_project_path(project), class: "btn btn-primary" %>
+          </td>
+          <td>
+            <%= link_to "Eliminar", project_path(project), data: { turbo_method: :delete, turbo_confirm: "Estás seguro de que quieres eliminar este proyecto? Esta acción no se puede deshacer." }, class: "btn btn-danger" %>
           </td>
         </tr>
       <% end %>

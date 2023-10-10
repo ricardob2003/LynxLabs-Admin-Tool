@@ -11,7 +11,7 @@
           <th style="background-color: #470247; color: #ededed; font-weight: bold;">Nacionalidad</th>
           <th style="background-color: #470247; color: #ededed; font-weight: bold;">Estado Civil</th>
           <th style="background-color: #470247; color: #ededed; font-weight: bold;">Tipo de Contrato</th>
-          <th style="background-color: #470247; color: #ededed; font-weight: bold;">Developer</th>
+          <th style="background-color: #470247; color: #ededed; font-weight: bold;">Posición</th>
           <th style="background-color: #470247; color: #ededed; font-weight: bold;">DNI</th>
           <th style="background-color: #470247; color: #ededed; font-weight: bold;">RTN</th>
           <th colspan="2" style="background-color: #470247; color: #ededed; font-weight: bold;">Acciones de Empleado</th>
@@ -32,7 +32,7 @@
                 <%= link_to "Editar", edit_employee_path(employee), class: "btn btn-primary" %>
               </td>
               <td>
-                <%= link_to "Eliminar", employee_path(employee), turbo_method: :delete, data: { confirm: 'Estás seguro de que quieres eliminar este empleado? Esta acción no se puede deshacer.' }, class: "btn btn-danger" %>
+                <%= link_to "Eliminar", employee_path(employee), data: { turbo_method: :delete, turbo_confirm: "Estás seguro de que quieres eliminar este empleado? Esta acción no se puede deshacer." }, class: "btn btn-danger" %>
               </td>
             </tr>
           <% end %>

@@ -47,6 +47,48 @@ class EmployeesController < ApplicationController
     redirect_to employees_url, notice: "El Perfil del Empleado se ha eliminado exitosamente"
   end
 
+  def associate_with_project
+    @employee = Employee.find(params[:id])
+    project_id = params[:employee][:project_ids] # Use project_ids
+
+    if @employee && project_id
+      project_assignment = ProjectAssignment.new(
+        project_id: project_id,
+        employee_id: @employee.id,
+      )
+
+      if project_assignment.save
+        redirect_to @employee, notice: "Empleado vinculado a proyecto exitosamente."
+      else
+        # Handle save error if necessary
+        redirect_to @employee, alert: "No se pudo vincular al proyecto."
+      end
+    end
+  end
+
+  def unlink_project
+    @employee = Employee.find(params[:id])
+    project_id = params[:employee][:project_ids] # Use project_ids
+
+    if @employee && project_id
+      # Find the project assignment to be destroyed
+      project_assignment = ProjectAssignment.find_by(employee_id: @employee.id, project_id: project_id)
+
+      if project_assignment
+        if project_assignment.destroy
+          redirect_to @employee, notice: "Proyecto desvinculado exitosamente."
+        else
+          # Handle destroy error if necessary
+          redirect_to @employee, alert: "No se pudo desvincular el proyecto."
+        end
+      else
+        redirect_to @employee, alert: "El proyecto no está vinculado con este empleado."
+      end
+    else
+      redirect_to @employee, alert: "Error: No se pudo desvincular el proyecto. Por favor, seleccione un proyecto válido."
+    end
+  end
+
   private
 
   # Use callbacks to share common setup or constraints between actions.

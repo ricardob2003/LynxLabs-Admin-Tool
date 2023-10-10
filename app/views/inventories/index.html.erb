@@ -15,8 +15,8 @@
           <th style="background-color: #470247; color: #ededed; font-weight: bold;">ID del Equipo</th>
           <th style="background-color: #470247; color: #ededed; font-weight: bold;">Precio de Compra</th>
           <th style="background-color: #470247; color: #ededed; font-weight: bold;">Precio Pro-Rateado</th>
-          <th style="background-color: #470247; color: #ededed; font-weight: bold;">Vencimiento de Garantía</th>
-          <th colspan="2" style="background-color: #470247; color: #ededed; font-weight: bold;">Acciones</th>
+          <th style="background-color: #470247; color: #ededed; font-weight: bold;">Acciones</th>
+          <th colspan="2" style="background-color: #470247; color: #ededed; font-weight: bold;">Opciones</th>
         </tr>
       </thead>
       <tbody>
@@ -32,9 +32,14 @@
             <td style="color: #000000;"><%= inventory.lynx_id_number %></td>
             <td style="color: #000000;"><%= number_to_currency(inventory.purchase_price) %></td>
             <td style="color: #000000;"><%= number_to_currency(inventory.current_cost) %></td>
-            <td style="color: #000000;"><%= inventory.warranty_expiration ? inventory.warranty_expiration.strftime("%d %b %Y") : 'N/A' %></td>
             <td>
-              <%= link_to "Eliminar Equipo", inventory_path(inventory), data: { turbo_method: :delete, turbo_confirm: "¿Estás seguro de que quieres eliminar este equipo? Esta acción no se puede deshacer." }, class: "btn btn-danger" %>
+              <%= link_to 'Historial', task_history_inventory_path(inventory), class: 'btn btn-info' %>
+            </td>
+            <td>
+              <%= link_to "Editar", edit_inventory_path(inventory), class: "btn btn-primary" %>
+            </td>
+            <td>
+              <%= link_to "Eliminar", inventory_path(inventory), data: { turbo_method: :delete, turbo_confirm: "Estás seguro de que quieres eliminar este equipo? Esta acción no se puede deshacer." }, class: "btn btn-danger" %>
             </td>
           </tr>
         <% end %>

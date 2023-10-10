@@ -1,5 +1,6 @@
 <div class="employee-perfil">
-  <h2><strong>Nombre:</strong> <%= @employee.nombre %></h2>
+  <h1> <strong> Perfil de Empleado</strong></h1>
+  <p><strong>Nombre:</strong> <%= @employee.nombre %></p>
   <p><strong>Apellido:</strong> <%= @employee.apellido %></p>
   <p><strong>Nacionalidad:</strong> <%= @employee.nacionalidad %></p>
   <p><strong>Estado Civil:</strong> <%= @employee.estado_civil %></p>
@@ -9,3 +10,60 @@
   <p><strong>DNI:</strong> <%= @employee.dni %></p>
   <p><strong>RTN:</strong> <%= @employee.rtn %></p>
 </div>
+<% if @employee.projects.any? %>
+  <p><strong>Proyectos Asignados:</strong></p>
+  <ul>
+    <% @employee.projects.each do |project| %>
+      <li>
+        <%= link_to project.name, project_path(project), class: "list-associations" %>
+      </li>
+    <% end %>
+  </ul>
+<% else %>
+  <p>No se han asignado proyectos a este empleado.</p>
+<% end %>
+<!-- Add Assign Project link and form -->
+<button id="assign-project-button" type="Submit" class="btn btn-primary" style="margin-bottom: 20px;">Asignar Proyecto</button>
+<!-- Form for assigning a project (initially hidden) -->
+<div id="assign-project-form" style="display: none;">
+  <%= render "assign-project" %>
+</div>
+<!-- Add Unlink Project link and form -->
+<button id="unlink-project-button" type="button" class="btn btn-primary" style="margin-bottom: 20px;">Desvincular Proyecto</button>
+<!-- Form for unlinking a project (initially hidden) -->
+<div id="unlink-project-form" style="display: none;">
+  <%= render "unlink-project" %>
+</div>
+<script>
+  document.addEventListener("turbo:load", function() {
+    // Assign Project functionality
+    const assignProjectButton = document.getElementById("assign-project-button");
+    const assignProjectForm = document.getElementById("assign-project-form");
+
+    if (assignProjectButton) {
+      assignProjectButton.addEventListener("click", function(e) {
+        e.preventDefault();
+        if (assignProjectForm.style.display === "none") {
+          assignProjectForm.style.display = "block";
+        } else {
+          assignProjectForm.style.display = "none";
+        }
+      });
+    }
+
+    // Unlink Project functionality
+    const unlinkProjectButton = document.getElementById("unlink-project-button");
+    const unlinkProjectForm = document.getElementById("unlink-project-form");
+
+    if (unlinkProjectButton) {
+      unlinkProjectButton.addEventListener("click", function(e) {
+        e.preventDefault();
+        if (unlinkProjectForm.style.display === "none") {
+          unlinkProjectForm.style.display = "block";
+        } else {
+          unlinkProjectForm.style.display = "none";
+        }
+      });
+    }
+  });
+</script>

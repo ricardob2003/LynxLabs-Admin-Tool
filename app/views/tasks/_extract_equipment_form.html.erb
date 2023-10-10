@@ -1,14 +1,19 @@
-<%= form_with(model: task) do |form| %>
-  <%= render "shared/errors", object: task %>
-  <div style="margin-bottom: 20px;"> <!-- Add margin-bottom -->
+<%= form_with(model: @task, url: extract_equipment_task_path(@task), method: :patch) do |form| %>
+  <%= render "shared/errors", object: @task %>
+  <%= form.hidden_field :inventory_id, value: inventory.id %>
+  <%= form.hidden_field :task_type, value: 'extraction' %>
+  <%= form.hidden_field :date_of_assignment, value: task.date_of_assignment %>
+  <%= form.hidden_field :assignment_log, value: task.assignment_log %>
+  <div style="margin-bottom: 20px;">
     <%= form.label :date_of_extraction, "Fecha de Extracción de Equipo", style: "display: block" %>
     <%= form.date_field :date_of_extraction %>
   </div>
-  <div style="margin-bottom: 20px;"> <!-- Add margin-bottom -->
-    <%= form.label :equipment_log, "Bitácora del Equipo", style: "display: block" %>
-    <%= form.text_area :equipment_log %>
+  <div style="margin-bottom: 20px;">
+    <%= form.label :extraction_log, "Bitácora del Equipo Al Extraer ", style: "display: block" %>
+    <%= form.text_area :extraction_log %>
   </div>
   <div>
+    <%= form.hidden_field :task_type, value: 'extraction' %>
     <%= form.submit "Extraer Equipo" %>
   </div>
 <% end %>
