@@ -5,9 +5,9 @@ FROM ruby:$RUBY_VERSION
 # Set the working directory in the container
 WORKDIR /rails
 
-# Install system dependencies
+# Install system dependencies, including Node.js
 RUN apt-get update -qq && \
-  apt-get install -y build-essential libvips && \
+  apt-get install -y build-essential libvips nodejs && \
   apt-get clean && \
   rm -rf /var/lib/apt/lists/* /usr/share/doc /usr/share/man
 
