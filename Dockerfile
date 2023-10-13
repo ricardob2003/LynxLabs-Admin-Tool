@@ -1,5 +1,5 @@
 # Use the official Ruby 3.0 image as the base image
-ARG RUBY_VERSION=3.0
+ARG RUBY_VERSION=3.0.5
 FROM ruby:$RUBY_VERSION
 
 # Set the working directory in the container
