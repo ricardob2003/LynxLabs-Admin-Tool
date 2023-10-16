@@ -36,3 +36,6 @@ ENTRYPOINT ["/rails/bin/docker-entrypoint"]
 # Start the server by default, this can be overwritten at runtime
 EXPOSE 3000
 CMD ["./bin/rails", "server"]
+
+#Credentials File
+COPY config/credentials/production.yml.enc config/credentials/production.yml.enc
