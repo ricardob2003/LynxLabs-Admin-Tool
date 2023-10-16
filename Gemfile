@@ -6,17 +6,18 @@ ruby "3.0.5"
 # Bundle edge Rails instead: gem "rails", github: "rails/rails", branch: "main"
 gem "rails", "~> 7.0.4"
 
-#Bootstrap CSS framework
+# Bootstrap CSS framework
 gem "bootstrap", "~> 5.1", ">= 5.1.3"
 
 # The original asset pipeline for Rails [https://github.com/rails/sprockets-rails]
 gem "sprockets-rails"
 
-# Use sqlite3 as the database for Active Record
+# Use sqlite3 as the database for Active Record (only in development and test)
 group :development, :test do
   gem "sqlite3", "~> 1.4"
 end
 
+# Use PostgreSQL as the production database
 group :production do
   gem "pg"
 end
