@@ -19,8 +19,18 @@ Rails.application.configure do
   config.server_timing = true
 
   # Use Letter Opener for email delivery in development.
-  config.action_mailer.delivery_method = :letter_opener
+  config.action_mailer.delivery_method = :smtp
   config.action_mailer.perform_deliveries = true
+
+  config.action_mailer.smtp_settings = {
+    address: "email-smtp.us-east-1.amazonaws.com", # SES SMTP endpoint for your AWS region
+    port: 587,                                    # SES SMTP port
+    user_name: "AKIAQ3JSGLR22AFAPZ7L",            # Your AWS Access Key ID
+    password: "BBTnCXjM7O9Oxi31VrecBPBz/2bfxfcQOg2QsexegFOD", # Your AWS Secret Access Key
+    authentication: :plain,
+    enable_starttls_auto: true,
+  }
+  config.action_mailer.default_options = { from: "support@lynx-labs.com" }
 
   # Enable/disable caching. By default caching is disabled.
   # Run rails dev:cache to toggle caching.
@@ -42,7 +52,7 @@ Rails.application.configure do
   config.active_storage.service = :local
 
   # Don't care if the mailer can't send.
-  config.action_mailer.raise_delivery_errors = false
+  config.action_mailer.raise_delivery_errors = true
 
   config.action_mailer.perform_caching = false
 

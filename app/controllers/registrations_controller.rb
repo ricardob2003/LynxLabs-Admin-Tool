@@ -24,8 +24,14 @@ class RegistrationsController < ApplicationController
   end
 
   def destroy
-    @user.destroy
-    redirect_to employees_url, notice: "El Perfil del Administrador se ha eliminado exitosamente"
+    @user = User.find(params[:id])
+
+    if @user
+      @user.destroy
+      redirect_to employees_url, notice: "El Perfil del Administrador se ha eliminado exitosamente"
+    else
+      redirect_to employees_url, alert: "El Perfil del Administrador no se encontró"
+    end
   end
 
   private

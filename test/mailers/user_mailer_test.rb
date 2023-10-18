@@ -15,5 +15,6 @@ class UserMailerTest < ActionMailer::TestCase
     mail = UserMailer.with(user: @user).email_verification
     assert_equal "Verify your email", mail.subject
     assert_equal [@user.email], mail.to
+    assert_equal ["support@lynx-labs.com"], mail.from
   end
 end
