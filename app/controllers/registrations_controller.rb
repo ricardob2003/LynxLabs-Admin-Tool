@@ -17,7 +17,7 @@ class RegistrationsController < ApplicationController
       cookies.signed.permanent[:session_token] = { value: session_record.id, httponly: true }
 
       send_email_verification
-      redirect_to root_path, notice: "Bienvenido! Ha asignado un administrador exitosamente"
+      flash[:notice] = "Bienvenido! Ha asignado un administrador exitosamente"
     else
       render :new, status: :unprocessable_entity
     end
