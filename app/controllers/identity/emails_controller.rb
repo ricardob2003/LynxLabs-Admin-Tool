@@ -6,7 +6,7 @@ class Identity::EmailsController < ApplicationController
 
   def update
     if !@user.authenticate(params[:current_password])
-      redirect_to edit_identity_email_path, alert: "The password you entered is incorrect"
+      redirect_to edit_identity_email_path, alert: "La contraseña que ingreso es incorrecta"
     elsif @user.update(email: params[:email])
       redirect_to_root
     else
@@ -15,20 +15,21 @@ class Identity::EmailsController < ApplicationController
   end
 
   private
-    def set_user
-      @user = Current.user
-    end
 
-    def redirect_to_root
-      if @user.email_previously_changed?
-        resend_email_verification
-        redirect_to root_path, notice: "Your email has been changed"
-      else
-        redirect_to root_path
-      end
-    end
+  def set_user
+    @user = Current.user
+  end
 
-    def resend_email_verification
-      UserMailer.with(user: @user).email_verification.deliver_later
+  def redirect_to_root
+    if @user.email_previously_changed?
+      resend_email_verification
+      redirect_to root_path, notice: "Tu correo electronico se ha actualizado"
+    else
+      redirect_to root_path
     end
+  end
+
+  def resend_email_verification
+    UserMailer.with(user: @user).email_verification.deliver_later
+  end
 end

@@ -3,13 +3,21 @@ class UserMailer < ApplicationMailer
     @user = params[:user]
     @signed_id = @user.password_reset_tokens.create.signed_id(expires_in: 20.minutes)
 
-    mail to: @user.email, subject: "Reset your password"
+    mail(
+      to: @user.email,
+      subject: "Restablece tu contraseña",
+      url_options: { host: "rocky-refuge-27192-72dea8cf604b.herokuapp.com" },
+    )
   end
 
   def email_verification
     @user = params[:user]
     @signed_id = @user.email_verification_tokens.create.signed_id(expires_in: 2.days)
 
-    mail to: @user.email, subject: "Verify your email"
+    mail(
+      to: @user.email,
+      subject: "Verifica tu correo electrónico",
+      url_options: { host: "rocky-refuge-27192-72dea8cf604b.herokuapp.com" },
+    )
   end
 end

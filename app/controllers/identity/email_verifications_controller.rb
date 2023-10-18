@@ -10,7 +10,7 @@ class Identity::EmailVerificationsController < ApplicationController
 
   def create
     send_email_verification
-    redirect_to root_path, notice: "Hemos enviado un correo electrónico de verificación a tu dirección de correo electrónico."
+    flash[:notice] = "Hemos enviado un correo electrónico de verificación a tu dirección de correo electrónico."
   end
 
   private
