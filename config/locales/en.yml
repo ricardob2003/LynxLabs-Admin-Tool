@@ -39,7 +39,7 @@ en:
       address:
         country: "País"
         state: "Región"
-        address_line_1: "Colonia"
+        address_line_1: "Dirección"
       inventory:
         name: "Tipo de Equipo"
         model: "Modelo de Equipo"

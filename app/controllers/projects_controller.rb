@@ -10,11 +10,6 @@ class ProjectsController < ApplicationController
 
   def edit
     @project = Project.find(params[:id])
-    @non_editable_attributes = {
-      name: @project.name,
-      cliente: @project.cliente,
-      start_date: @project.start_date,
-    }
   end
 
   def update
@@ -63,10 +58,10 @@ class ProjectsController < ApplicationController
   end
 
   def project_params_create
-    params.require(:project).permit(:name, :cliente, :start_date, :end_date, :status, :bitacora_del_proyecto)
+    params.require(:project).permit(:name, :cliente, :start_date, :end_date, :status, :detalles_del_proyecto)
   end
 
   def project_params_edit
-    params.require(:project).permit(:status, :end_date, :bitacora_del_proyecto)
+    params.require(:project).permit(:name, :cliente, :start_date, :end_date, :status, :detalles_del_proyecto)
   end
 end

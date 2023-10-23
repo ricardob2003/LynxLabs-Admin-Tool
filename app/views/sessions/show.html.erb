@@ -26,7 +26,6 @@
 <h5><%= "Administrar Credenciales" %></h5>
 <div class="user-buttons-container">
   <%= button_to("Cambiar Contraseña", edit_password_path, method: :get, class: "user-button") %>
-  <%= button_to("Cambiar Correo Electronico", edit_identity_email_path, method: :get, class: "user-button") %>
   <%= button_to("Re-send verification email", identity_email_verification_path, class: "user-button") %>
 </div>
 <div style="margin-bottom: 20px;"></div>

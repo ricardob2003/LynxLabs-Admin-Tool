@@ -3,23 +3,23 @@
   <!-- Editable fields -->
   <div>
     <%= f.label :name, "Nombre del Proyecto" %><br>
-    <%= f.text_field :name, readonly: !@project.new_record? %>
+    <%= f.text_field :name %>
   </div>
   <div>
     <%= f.label :cliente %><br>
-    <%= f.text_field :cliente, readonly: !@project.new_record? %>
+    <%= f.text_field :cliente %>
   </div>
   <div>
     <%= f.label :start_date, "Fecha de Asignación" %><br>
-    <%= f.date_field :start_date, readonly: !@project.new_record? %>
+    <%= f.date_field :start_date %>
   </div>
   <div>
     <%= f.label :status %><br>
     <%= f.select :status, options_for_select([['Asignado', 'Asignado'], ['Development', 'Development'], ['Production', 'Production'], ['Entregado', 'Entregado']]) %>
   </div>
   <div>
-    <%= f.label :bitacora_del_proyecto %><br>
-    <%= f.text_area :bitacora_del_proyecto, rows: 4 %>
+    <%= f.label :detalles_del_proyecto %><br>
+    <%= f.text_area :detalles_del_proyecto, rows: 4 %>
   </div>
   <div>
     <%= f.label :end_date, "Fecha de Finalización" %><br>

@@ -6,7 +6,7 @@ class CreateProjects < ActiveRecord::Migration[7.0]
       t.date :start_date
       t.date :end_date
       t.string :status
-      t.string :bitacora_del_proyecto
+      t.string :detalles_del_proyecto
 
       t.timestamps
     end

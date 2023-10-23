@@ -2,12 +2,12 @@ class Project < ApplicationRecord
   has_many :project_assignments, dependent: :destroy
   has_many :employees, through: :project_assignments
 
-  validates :name, :cliente, :start_date, :bitacora_del_proyecto, :end_date, presence: { message: "no puede estar en blanco" }
+  validates :name, :cliente, :start_date, :detalles_del_proyecto, :end_date, presence: { message: "no puede estar en blanco" }
   validates :status, inclusion: {
                        in: ["Asignado", "Development", "Production", "Entregado"],
                        message: "el estatus del proyecto tiene que ser determinado",
                      }
-  validates :bitacora_del_proyecto, length: { maximum: 500 }
+  validates :detalles_del_proyecto, length: { maximum: 500 }
   validate :end_date_after_start_date
 
   # Validate that the end_date will always be after the start_date

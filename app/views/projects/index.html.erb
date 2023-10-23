@@ -28,7 +28,7 @@
           <td style="color: #000000;"><%= project.end_date.strftime("%d %b %Y") %></td>
           <td style="color: #000000;"><%= project.status %></td>
           <td style="color: #000000;">
-            <%= truncate(project.bitacora_del_proyecto, length: 75) %>
+            <%= truncate(project.detalles_del_proyecto, length: 75) %>
           </td>
           <td>
             <%= link_to "Editar", edit_project_path(project), class: "btn btn-primary" %>
